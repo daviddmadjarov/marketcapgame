@@ -677,10 +677,33 @@
             display: none;
             
         }
+    @media (max-width: 600px) {
+        :root {
+            --or-size: 70px;
+            --divider-width: 6px;
+        }
+        #play-screen::before {
+            left: 0;
+            top: 50%;
+            right: 0;
+            bottom: auto;
+            width: 100vw;
+            height: var(--divider-width);
+            transform: translateY(-50%);
+        }
+        #or-container {
+            width: 70px;
+            height: 70px;
+            font-size: 1.2rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
     </style>
 </head>
 <body class="dotted-pattern">
-<button class="info-icon" id="infoButton" aria-label="Game Info" onclick="toggleInfoPopup()">
+<button class="info-icon" id="infoButton" aria-label="Game Info">
     <svg viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="11" stroke="#fff" stroke-width="2" fill="none"/>
         <text x="12" y="17" text-anchor="middle" font-size="13" font-family="Arial" fill="#fff">i</text>
@@ -872,6 +895,21 @@
             var popup = document.getElementById('infoPopup');
             if (popup) popup.classList.remove('active');
         }
+            // Prevent info icon click from closing popup
+            document.getElementById('infoButton').addEventListener('click', function(event) {
+                event.stopPropagation();
+                toggleInfoPopup();
+            });
+
+            // Close info popup when clicking outside
+            document.addEventListener('click', function(event) {
+                var popup = document.getElementById('infoPopup');
+                if (popup && popup.classList.contains('active')) {
+                    if (!popup.contains(event.target)) {
+                        popup.classList.remove('active');
+                    }
+                }
+            });
     // --- JAVASCRIPT GAME LOGIC ---
 
     // 1. DATA SOURCE: PLACE YOUR COMPANIES HERE!
@@ -943,7 +981,7 @@
     { name: 'Goldman Sachs', market_cap_b: 237.21, description: 'Global investment banking firm', image_url: 'logos_1/goldman_sachs.jpg' },
     { name: 'RTX', market_cap_b: 235.39, description: 'Aerospace and defense technologies', image_url: 'logos_1/rtx.jpg' },
     { name: 'Salesforce', market_cap_b: 231.96, description: 'Cloud-based CRM software company', image_url: 'logos_1/salesforce.jpg' },
-    { name: 'Reliance Industries', market_cap_b: 231.96, description: 'Diversified conglomerate, energy to retail', image_url: 'logos_1/reliance_industries.jpg' },
+    { name: 'Reliance Industries', market_cap_b: 231.95, description: 'Diversified conglomerate, energy to retail', image_url: 'logos_1/reliance_industries.jpg' },
     { name: 'Merck', market_cap_b: 230.62, description: 'Pharmaceuticals, vaccines, and animal health', image_url: 'logos_1/merck.jpg' },
     { name: 'Abbott Laboratories', market_cap_b: 227.07, description: 'Medical devices and healthcare products', image_url: 'logos_1/abbott_laboratories.jpg' },
     { name: 'Siemens', market_cap_b: 226.79, description: 'Industrial automation and digitalization', image_url: 'logos_1/siemens.jpg' },
