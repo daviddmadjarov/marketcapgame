@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Higher or Lower? (Market Value)</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+                                                                .privacy-modal {
+                                                                    position: fixed;
+                                                                    top: 50%;
+                                                                    left: 50%;
+                                                                    transform: translate(-50%, -50%);
+                                                                    background: rgba(40,40,40,0.98);
+                                                                    color: #fff;
+                                                                    border-radius: 16px;
+                                                                    box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+                                                                    padding: 38px 32px 28px 32px;
+                                                                    max-width: 480px;
+                                                                    width: 90vw;
+                                                                    z-index: 100;
+                                                                    display: none;
+                                                                }
+                                                                .privacy-modal.active {
+                                                                    display: block;
+                                                                }
+                                                                .privacy-modal .close-btn {
+                                                                    position: absolute;
+                                                                    top: 16px;
+                                                                    right: 18px;
+                                                                    background: none;
+                                                                    border: none;
+                                                                    color: #fff;
+                                                                    font-size: 2rem;
+                                                                    cursor: pointer;
+                                                                    font-weight: 700;
+                                                                }
+                                                                .privacy-modal h2 {
+                                                                    margin-top: 0;
+                                                                    font-size: 1.35rem;
+                                                                    margin-bottom: 18px;
+                                                                }
+                                                                .privacy-modal p {
+                                                                    font-size: 1.08rem;
+                                                                    margin-bottom: 0;
+                                                                }
+                                                                .privacy-btn {
+                                                                    margin-top: 18px;
+                                                                    background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%);
+                                                                    color: #fff;
+                                                                    font-size: 1.08rem;
+                                                                    font-weight: 500;
+                                                                    border: none;
+                                                                    border-radius: 8px;
+                                                                    padding: 10px 24px;
+                                                                    cursor: pointer;
+                                                                    transition: background 0.2s;
+                                                                }
+                                                                .privacy-btn:hover {
+                                                                    background: linear-gradient(90deg, #adb5bd 0%, #6c757d 100%);
+                                                                }
+                                                        .info-icon {
+                                                            position: absolute;
+                                                            top: 28px;
+                                                            right: 32px;
+                                                            z-index: 30;
+                                                            width: 44px;
+                                                            height: 44px;
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            background: none;
+                                                            border: none;
+                                                            cursor: pointer;
+                                                        }
+                                                        .info-icon svg {
+                                                            width: 32px;
+                                                            height: 32px;
+                                                            fill: #fff;
+                                                        }
+                                                        .info-popup {
+                                                            position: absolute;
+                                                            top: 80px;
+                                                            right: 32px;
+                                                            background: rgba(40,40,40,0.97);
+                                                            color: #fff;
+                                                            border-radius: 12px;
+                                                            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+                                                            padding: 22px 28px;
+                                                            max-width: 340px;
+                                                            font-size: 1.08rem;
+                                                            z-index: 40;
+                                                            display: none;
+                                                        }
+                                                        .info-popup.active {
+                                                            display: block;
+                                                        }
+                                                .btn-back-menu {
+                                                    background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%);
+                                                    color: #fff;
+                                                    font-weight: 400;
+                                                    font-size: clamp(18px,2.4vw,28px);
+                                                    padding: 18px 64px;
+                                                    border-radius: 12px;
+                                                    border: none;
+                                                    box-shadow: 0 18px 40px rgba(108,117,125,0.18);
+                                                    cursor: pointer;
+                                                    transition: transform 0.13s, box-shadow 0.13s, background 0.3s;
+                                                    margin: 0;
+                                                }
+                                                .btn-back-menu:hover, .btn-back-menu:focus {
+                                                    background: linear-gradient(90deg, #adb5bd 0%, #6c757d 100%);
+                                                    transform: translateY(-4px);
+                                                    filter: brightness(.98);
+                                                    outline: none;
+                                                }
+                                        .btn-back-menu {
+                                            background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%);
+                                            color: #fff;
+                                            font-weight: 400;
+                                            font-size: clamp(18px,2.4vw,28px);
+                                            padding: 18px 64px;
+                                            border-radius: 12px;
+                                            border: none;
+                                            box-shadow: 0 18px 40px rgba(108,117,125,0.18);
+                                            cursor: pointer;
+                                            transition: transform 0.13s, box-shadow 0.13s, background 0.3s;
+                                            margin: 0;
+                                        }
+                                        .btn-back-menu:hover, .btn-back-menu:focus {
+                                            background: linear-gradient(90deg, #adb5bd 0%, #6c757d 100%);
+                                            transform: translateY(-4px);
+                                            filter: brightness(.98);
+                                            outline: none;
+                                        }
+                                .game-over-hero {
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                    justify-content: center;
+                                    gap: 32px;
+                                    padding: 48px 32px 40px 32px;
+                                    min-height: 540px;
+                                }
+                                .game-over-hero .title-stack {
+                                    margin-bottom: 0;
+                                }
+                                .game-over-hero .title-main {
+                                    margin-bottom: 10px !important;
+                                }
+                                .game-over-hero .title-sub {
+                                    margin-bottom: 18px;
+                                }
+                                .game-over-hero .display-3 {
+                                    margin: 0 0 10px 0 !important;
+                                }
+                                .game-over-hero #final-score {
+                                    margin: 0 0 18px 0 !important;
+                                }
+                                .game-over-hero #new-record {
+                                    margin-bottom: 18px !important;
+                                }
+                                .game-over-hero .start-controls {
+                                    margin-top: 18px;
+                                    gap: 18px;
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    width: 100%;
+                                }
+                        .btn-play-again {
+                            background: linear-gradient(90deg, #28a745 0%, #43e97b 100%);
+                            color: #fff;
+                            font-weight: 900;
+                            font-size: clamp(22px,3vw,38px);
+                            padding: 24px 80px;
+                            border-radius: 16px;
+                            border: none;
+                            box-shadow: 0 18px 40px rgba(40,167,69,0.18);
+                            cursor: pointer;
+                            transition: transform 0.13s, box-shadow 0.13s, background 0.3s;
+                            margin: 0 0 12px 0;
+                        }
+                        .btn-play-again:hover, .btn-play-again:focus {
+                            background: linear-gradient(90deg, #43e97b 0%, #28a745 100%);
+                            transform: translateY(-4px);
+                            filter: brightness(.98);
+                            outline: none;
+                        }
+                .highscore-top {
+                    position: absolute;
+                    top: 24px;
+                    left: 32px;
+                    z-index: 20;
+                    background: rgba(40,40,40,0.85);
+                    color: #fff;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    padding: 8px 18px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                }
+        /* --- BACKGROUND PATTERN DEFINITION (For Body, Start, and End Screens) --- */
+        .dotted-pattern {
+            /* Dark gray background */
+            background-color: #333; 
+            /* Subtle dotted diagonal pattern */
+            background-image: radial-gradient(circle, #444 1px, transparent 1px), radial-gradient(circle, #444 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+            /* --- Share Score Button Custom Styling --- */
+        .btn-menu {
+            background: linear-gradient(90deg, #6c757d 0%, #adb5bd 100%);
+            color: #fff;
+            font-weight: 400 !important;
+            font-size: clamp(16px,1.8vw,22px);
+            padding: 12px 36px;
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 18px 40px rgba(108,117,125,0.18);
+            cursor: pointer;
+            transition: transform 0.13s, box-shadow 0.13s, background 0.3s;
+            margin: 0;
+        }
+        .btn-menu:hover, .btn-menu:focus {
+            background: linear-gradient(90deg, #adb5bd 0%, #6c757d 100%);
+        }
+        @media (max-width:720px){
+            .btn-menu { padding: 14px 36px; font-size: 20px; }
+        }
+        .btn-share {
+            background: linear-gradient(90deg, #28a745 0%, #17a2b8 50%, #ff6b6b 100%);
+            color: #fff;
+            font-weight: 400;
+            font-size: clamp(18px,2.4vw,28px);
+            padding: 18px 64px;
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 18px 40px rgba(39,174,96,0.18);
+            cursor: pointer;
+            transition: transform 0.13s, box-shadow 0.13s, background 0.3s;
+            margin: 0;
+        }
+        .btn-share:hover, .btn-share:focus {
+            background: linear-gradient(90deg, #17a2b8 0%, #28a745 50%, #ff6b6b 100%);
+            transform: translateY(-4px);
+            filter: brightness(.98);
+            outline: none;
+        }
+
+        /* --- Global Layout and Structure --- */
+        body, html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            /* Apply pattern to body so it shows during card transitions */
+            background-color: #ffffff;
+        }
+        .screen-container {
+            width: 100vw; 
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: none;
+            min-height: 100vh;
+        }
+        .game-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: transparent; /* Play screen has transparent background */
+            border-radius: 0; 
+            box-shadow: none; 
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        .game-screen.hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .game-screen.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        /* START/END screen video styling (full-bleed background) */
+        #start-screen-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+
+        /* hero / start screen layout */
+        #start-screen {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 100px 24px; /* leaves 100px from top & bottom */
+        z-index: 1;
+        background: transparent;
+        }
+
+        /* glass/hero card centered above the video */
+        .hero-card {
+        width: min(1100px, 92%);
+        height: calc(100vh - 200px); /* fills between top/bottom gaps */
+        max-width: 1100px;
+        border-radius: 20px;
+        padding: 42px 48px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 28px;
+        z-index: 2;
+        /* subtle frosted glass */
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        border: 1px solid rgba(255,255,255,0.06);
+        box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+        backdrop-filter: blur(6px);
+        }
+
+        /* big title area */
+        .title-stack { text-align:center; margin-top:-12px; }
+        .title-main {
+        font-weight: 900;
+        letter-spacing: 0.6px;
+        line-height: 0.92;
+        font-size: clamp(40px, 6vw, 72px);
+        text-transform: uppercase;
+        margin: 0;
+        }
+        .title-main .higher { color:#28a745; }
+        .title-main .or      { color:#ffffff; margin:0 8px; }
+        .title-main .lower  { color:#dc3545; }
+
+        .title-sub {
+            margin-top: 8px;
+            font-weight: 1000;
+            color: #d4af37; /* gold */
+            font-size: clamp(22px, 3.5vw, 42px); /* slightly bigger */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 4px 4px 14px rgba(0,0,0,0.9);
+        }
+
+        /* highscore (small, under title) */
+        #best-score { color:#fff; font-weight:700; font-size:1.05rem; margin-top:8px; }
+
+        /* primary play button centered */
+        .start-controls {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 18px;
+            margin-top: 24px; /* <-- move Play Classic button slightly down (change this single value) */
+        }
+        .btn-play {
+        background: linear-gradient(180deg,#4b9cff,#1a73e8);
+        border: none;
+        color: #ffffff;
+        font-weight:900;
+        font-size: clamp(18px,2.4vw,28px);
+        padding: 18px 64px;
+        border-radius: 12px;
+        box-shadow: 0 18px 40px rgba(39,174,96,0.18);
+        cursor:pointer;
+        }
+        .btn-play:hover { transform: translateY(-4px); filter:brightness(.98); }
+
+        /* bottom categories area inside the hero card */
+        .categories-bar {
+        margin-top: auto;
+        width: 100%;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+        padding-bottom: 6px;
+        }
+        .categories-bar h4 { color: rgba(255,255,255,0.9); font-weight:700; margin:0; }
+        .category-buttons { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+        .category-buttons .btn { padding:8px 12px; font-weight:700; border-radius:8px; opacity:0.95; }
+
+        /* ensure hero-card content stays readable on small screens */
+        @media (max-width:720px){
+        .hero-card { padding: 28px; height: calc(100vh - 140px); }
+        .title-main { font-size: clamp(32px,9vw,48px); }
+        .btn-play { padding: 14px 36px; font-size: 20px; }
+        }
+
+        /* Game over screen panel uses same visual so text readable */
+        #game-over-screen .game-over-panel {
+            position: relative;
+            z-index: 2;
+            width: min(760px, 90%);
+            max-width: 760px;
+            padding: 36px;
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+            background-color: rgba(51,51,51,0.92);
+            background-image: radial-gradient(circle, rgba(68,68,68,0.9) 1px, transparent 1px), radial-gradient(circle, rgba(68,68,68,0.9) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Keep existing #start-screen > h1 etc. but they will now live inside .start-panel */
+        #start-screen > .start-panel > h1,
+        #start-screen > .start-panel > p,
+        #start-screen > .start-panel > .start-button-group {
+            position: relative;
+            z-index: 3;
+        }
+        #start-screen {
+            background-color: #333; /* Ensure it starts dark */
+        }
+        .logo-text {
+            color: #007bff; /* Keep logo color bright */
+        }
+        #game-over-screen .display-3 {
+            color: #dc3545;
+        }
+        #game-over-screen .final-score,
+        #final-score {
+            font-weight: 900; /* make score bold */
+            /* keep existing sizing/color if needed */
+            font-size: 2.4rem;
+            color: #fff;
+        }
+        #end-screen-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+        .hero-card.game-over-hero { /* uses same hero-card styling; ensure sits above video */ z-index:2; }
+        .hero-card.game-over-hero .display-3 { text-shadow: 4px 4px 18px rgba(0,0,0,0.8); }
+
+        /* --- Play Screen (Cards) --- */
+        #play-screen {
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            gap: 0;
+        }
+        .card-wrapper {
+            width: 50vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .game-card {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0; 
+            box-shadow: none; 
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.6s ease-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-description {
+            font-size: 1.5rem;
+            font-weight: normal;
+            color: #e0e0e0;
+            margin-top: 30px;
+            max-width: 80%;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 1), 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        /* --- CARD OVERLAY and HOVER EFFECT --- */
+        .card-overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Lighter initial darkness */
+            color: white;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            /* Transition for overlay color (for fade-in/out on hover) */
+            transition: background-color 0.5s ease;
+            
+            /* Border properties for animation */
+            border: 12px solid transparent;
+            padding: 0; /* Ensures content doesn't shift */
+            box-sizing: border-box; /* Includes border in element's total width/height */
+        }
+        /* Hover Effect: Turn darker with fade */
+        .game-card:hover .card-overlay {
+             background-color: rgba(0, 0, 0, 0.75); /* Darker on hover */
+        }
+        
+        /* --- BORDER ANIMATION CLASSES --- */
+        
+        /* 1. Guess State: Shrink and turn white */
+        .guess-border {
+            border: 12px solid white;
+            transition: border 0.5s ease-out, padding 0.5s ease-out; /* Smooth transition to white/shrink */
+        }
+        /* 2. Correct State: Turn Green */
+        .correct-border {
+            border: 12px solid #28a745; /* Green */
+            transition: border 0.5s ease-out;
+        }
+        /* 3. Incorrect State: Turn Red */
+        .incorrect-border {
+            border: 12px solid #dc3545; /* Red */
+            transition: border 0.5s ease-out;
+        }
+
+        .card-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: black;
+            padding: 8px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 1), 2px 2px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        .start-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .btn-play, .btn-secondary {
+            margin-top: 20px; /* Adjust as needed */
+            padding: 10px 18px;
+            border-radius: 10px;
+        }
+        /* Vertical divider with centered gap for the OR circle */
+        :root {
+        --or-size: 120px;              /* match #or-container width */
+        --or-gap-extra: 8px;           /* extra spacing around the OR */
+        --or-gap-half: calc(var(--or-size) / 2 + var(--or-gap-extra));
+        --divider-width: 8px;          /* thicker divider */
+        --divider-transition: 0.5s;    /* keep in sync with border transitions */
+        }
+
+        #play-screen {
+            position: relative; /* ensure pseudo-elements are positioned relative to play screen */
+        }
+
+        /* single continuous line from top to bottom */
+        #play-screen::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: var(--divider-width); /* use variable for thickness */
+            background: white;
+            transform: translateX(-50%);
+            z-index: 5;                 /* below the OR (OR is z-index:10) */
+            pointer-events: none;
+            transition: background var(--divider-transition) ease-out, box-shadow var(--divider-transition) ease-out;
+        }
+
+        /* remove the ::after pseudo-element entirely */
+
+        /* Divider color states - match border colors & timing */
+        #play-screen.correct-divider::before {
+            background: #28a745; /* green */
+            box-shadow: 0 0 14px rgba(40,167,69,0.45);
+        }
+        #play-screen.incorrect-divider::before {
+            background: #dc3545; /* red */
+            box-shadow: 0 0 14px rgba(220,53,69,0.45);
+        }
+        /* keep white while initial guess animation is running */
+        #play-screen.divider-guess::before {
+            background: white;
+            box-shadow: none;
+        }
+        /* --- OR/Score Separator --- */
+        @keyframes pulse-green {
+            /* Redefining green pulse for cleaner look */
+            0% { 
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+            }
+            70% { 
+                box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); 
+            }
+            100% { 
+                box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); 
+            }
+        }
+        
+        #or-container {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease-in-out;
+            
+        }
+        #or-container.correct-anim {
+            animation: pulse-green 0.7s ease-out 1;
+        }
+        
+        /* Smooth pop-in/pop-out for score */
+        #or-score {
+            display: none;
+            font-size: 3.5rem;
+            color: #28a745; 
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        #or-container.score-anim #or-score {
+            display: block;
+            transform: scale(1);
+        }
+        #or-container.score-anim #or-text {
+            display: none;
+            
+        }
+    </style>
+</head>
+<body class="dotted-pattern">
+<button class="info-icon" id="infoButton" aria-label="Game Info" onclick="toggleInfoPopup()">
+    <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="11" stroke="#fff" stroke-width="2" fill="none"/>
+        <text x="12" y="17" text-anchor="middle" font-size="13" font-family="Arial" fill="#fff">i</text>
+    </svg>
+</button>
+<div class="info-popup" id="infoPopup">
+    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+        <div style="margin-bottom: 18px;">
+            <strong>How to Play:</strong><br>
+            Guess which company has a higher or lower market capitalization.<br>
+            Click on the company you believe has the <b>HIGHER</b> market cap.<br>
+            Your score increases for each correct guess. Try to beat your highscore!<br><br>
+            <strong>Tip:</strong> Look at the descriptions of the companies to see what they do! The values are updated at the start of each month!
+        </div>
+        <button class="privacy-btn" onclick="openPrivacyModal()">Privacy Policy</button>
+        <button class="privacy-btn" style="margin-top:8px;" onclick="openTermsModal()">Terms of Service</button>
+            <button class="privacy-btn" style="margin-top:8px;" onclick="openContactModal()">Contact Us</button>
+            </div>
+            <div class="contact-modal" id="contactModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#e0e0e0; color:#222; max-width:420px; width:90%; padding:32px 28px 24px 28px; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); z-index:9999;">
+                <button class="close-btn" onclick="closeContactModal()" aria-label="Close Contact" style="position:absolute; top:18px; right:18px; font-size:2rem; background:none; border:none; color:#888; cursor:pointer;">&times;</button>
+                <h2 style="margin-top:0;">Contact Us</h2>
+                <p>
+                    For any questions, feedback, or support, please contact us:<br><br>
+                    <strong>Email:</strong> <a href="mailto:developer@email.com">developer@email.com</a><br>
+                    <strong>Twitter:</strong> <a href="https://twitter.com/yourprofile" target="_blank">@yourprofile</a><br>
+                    <strong>Website:</strong> <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a><br><br>
+                    We aim to respond within 48 hours.
+                </p>
+            </div>
+        </div>
+        <div class="terms-modal" id="termsModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; color:#222; max-width:480px; width:90%; padding:32px 28px 24px 28px; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); z-index:9999;">
+            <button class="close-btn" onclick="closeTermsModal()" aria-label="Close Terms of Service" style="position:absolute; top:18px; right:18px; font-size:2rem; background:none; border:none; color:#888; cursor:pointer;">&times;</button>
+            <h2 style="margin-top:0;">Terms of Service</h2>
+            <p>
+                By using this game, you agree to the following terms:<br><br>
+                1. This game is provided for entertainment purposes only.<br>
+                2. No guarantees are made regarding accuracy of company data.<br>
+                3. All gameplay data is stored locally and not shared.<br>
+                4. The developer is not liable for any damages or losses.<br>
+                5. Use of this game is at your own risk.<br><br>
+                For questions, contact the developer directly.
+            </p>
+        </div>
+    </div>
+<div class="privacy-modal" id="privacyModal">
+    <button class="close-btn" onclick="closePrivacyModal()" aria-label="Close Privacy Policy">&times;</button>
+    <h2>Privacy Policy</h2>
+    <p>
+        This game does not collect, store, or share any personal information. All gameplay data is stored locally in your browser and is not transmitted to any server.<br><br>
+        We respect your privacy. If you have questions or concerns, please contact the developer directly.
+    </p>
+</div>
+</div>
+<div class="screen-container">
+
+        <div id="start-screen" class="game-screen active">
+    <!-- full-bleed looping background video (keep your videos folder) -->
+    <video autoplay loop muted playsinline id="start-screen-video">
+        <source src="videos/mein-hintergrund.mp4" type="video/mp4">
+    </video>
+
+    <div id="best-score" class="highscore-top">Highscore: <strong id="best-score-value">0</strong></div>
+    <!-- hero card: centered, stops 100px from top/bottom -->
+    <div class="hero-card" role="region" aria-label="Start">
+        <div class="title-stack">
+        <h1 class="title-main">
+            <span class="higher">HIGHER</span>
+            <span class="or"> OR </span>
+            <span class="lower">LOWER</span>
+        </h1>
+        <div class="title-sub">MARKET CAP</div>
+                <div style="color:#fff; text-align:center; margin:24px 0 8px 0; font-size:1.15rem; font-weight:400;">
+                    All stats are based on the market cap of the companies.<br>
+                    <span style="display:block; margin-top:6px; font-size:1rem; color:#e0e0e0;">Updated November 2025</span>
+                </div>
+        </div>
+
+        <div class="start-controls">
+        <button id="start-button" class="btn-play-again" onclick="hideInfoPopup(); showScreen('play-screen'); startGame()">Play Classic!</button>
+        </div>
+
+        <div class="categories-bar" aria-hidden="true">
+        <h4>Categories (Coming Soon!)</h4>
+        <div class="category-buttons">
+            <button class="btn btn-light" disabled>📈 Company Stocks</button>
+            <button class="btn btn-light" disabled>💰 Company Revenue</button>
+            <button class="btn btn-light" disabled>💸 Company Earnings</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <div id="play-screen" class="game-screen hidden">
+        
+        <div id="current-card-wrapper" class="card-wrapper">
+            <div id="current-card" class="game-card" onclick="makeGuess('lower')">
+                <div class="card-overlay" id="current-overlay">
+                    <div id="current-name" class="h1"></div>
+                    <div id="current-cap-wrapper">
+                        <div id="current-cap" class="card-value"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="or-container">
+            <span id="or-text">OR</span>
+            <span id="or-score" style="display:none;"></span>
+            <span id="score-popup" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#333; font-size:2.5rem; font-weight:bold; font-family:inherit; z-index:20; pointer-events:none; transition:opacity 0.3s; opacity:0;"></span>
+        <style>
+            #score-popup.fade-in {
+                opacity: 1 !important;
+                transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            }
+        </style>
+        </div>
+
+        <div id="next-card-wrapper" class="card-wrapper">
+            <div id="next-card" class="game-card" onclick="makeGuess('higher')">
+                <div class="card-overlay" id="next-overlay">
+                    <div id="next-name" class="h1"></div>
+                    <div id="next-cap-wrapper">
+                        <div id="next-cap" class="card-value">Value: ???</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="current-score-display" class="h2" style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 5px; color: white; z-index: 15;">Score: <span id="current-score">0</span></div>
+
+        <div id="game-info" style="position: absolute; bottom: 20px; z-index: 10; width: 80%; text-align: center;">
+            <div id="game-message" class="alert alert-info" style="display:none; margin:0;"></div>
+        </div>
+    </div>
+
+    <div id="game-over-screen" class="game-screen hidden">
+    <!-- full-bleed end-screen video -->
+    <video autoplay loop muted playsinline id="end-screen-video">
+        <source src="videos/end-screen.mp4" type="video/mp4">
+    </video>
+    <div id="end-highscore" class="highscore-top">Highscore: <span id="end-highscore-value">0</span></div>
+    <!-- reuse the same hero-card layout so content sits above the video -->
+    <div class="hero-card game-over-hero" role="region" aria-label="Your Score">
+        <div class="title-stack">
+            <h1 class="title-main">
+                <span class="higher">HIGHER</span>
+                <span class="or"> OR </span>
+                <span class="lower">LOWER</span>
+            </h1>
+            <div class="title-sub">MARKET CAP</div>
+        </div>
+        <div class="display-3" style="font-weight:900; color:#ff6b6b;">YOUR SCORE:</div>
+        <div class="final-score" id="final-score" style="font-size:4.2rem; font-weight:900; color:#fff; letter-spacing:2px;">0</div>
+        <div class="start-controls">
+            <button class="btn btn-secondary btn-share" id="share-score-button" onclick="shareScore()">Share Score</button>
+            <button class="btn-play-again" onclick="startGame(); showScreen('play-screen')">Play Again</button>
+            <button class="btn btn-secondary btn-share" onclick="showScreen('start-screen')">Back to Menu</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+                    function openContactModal() {
+                        document.getElementById('contactModal').style.display = 'block';
+                    }
+                    function closeContactModal() {
+                        document.getElementById('contactModal').style.display = 'none';
+                    }
+            function openPrivacyModal() {
+                document.getElementById('privacyModal').classList.add('active');
+            }
+            function closePrivacyModal() {
+                document.getElementById('privacyModal').classList.remove('active');
+            }
+            function openTermsModal() {
+                document.getElementById('termsModal').style.display = 'block';
+            }
+            function closeTermsModal() {
+                document.getElementById('termsModal').style.display = 'none';
+            }
+        function toggleInfoPopup() {
+            var popup = document.getElementById('infoPopup');
+            popup.classList.toggle('active');
+        }
+
+        function hideInfoPopup() {
+            var popup = document.getElementById('infoPopup');
+            if (popup) popup.classList.remove('active');
+        }
+    // --- JAVASCRIPT GAME LOGIC ---
+
+    // 1. DATA SOURCE: PLACE YOUR COMPANIES HERE!
+    const companies = [
+    { name: 'NVIDIA', market_cap_t: 4.630, description: 'AI and GPU chip innovator', image_url: 'logos_1/nvidia.jpg' },
+    { name: 'Apple', market_cap_t: 4.025, description: 'Premium, integrated hardware, software, services', image_url: 'logos_1/apple.jpg' },
+    { name: 'Microsoft', market_cap_t: 3.791, description: 'Cloud, software, and AI platform', image_url: 'logos_1/microsoft.jpg' },
+    { name: 'Alphabet (Google)', market_cap_t: 3.338, description: 'Search engine and advertising platform', image_url: 'logos_1/alphabet_google.jpg' },
+    { name: 'Amazon', market_cap_t: 2.508, description: 'E-commerce, cloud computing, and logistics', image_url: 'logos_1/amazon.jpg' },
+    { name: 'Saudi Aramco', market_cap_t: 1.674, description: 'Largest global oil producer', image_url: 'logos_1/saudi_aramco.jpg' },
+    { name: 'Broadcom', market_cap_t: 1.617, description: 'Semiconductor and infrastructure software', image_url: 'logos_1/broadcom.jpg' },
+    { name: 'Meta Platforms (Facebook)', market_cap_t: 1.536, description: 'Social media and Reality Labs', image_url: 'logos_1/meta_platforms.jpg' },
+    { name: 'TSMC', market_cap_t: 1.477, description: 'World\'s leading chip manufacturer', image_url: 'logos_1/tsmc.jpg' },
+    { name: 'Tesla', market_cap_t: 1.344, description: 'Electric vehicles and energy storage', image_url: 'logos_1/tesla.jpg' },
+    { name: 'Berkshire Hathaway', market_cap_t: 1.098, description: 'Conglomerate led by Warren Buffett', image_url: 'logos_1/berkshire_hathaway.jpg' },
+    { name: 'Eli Lilly', market_cap_b: 919.11, description: 'Pharmaceuticals, diabetes, and obesity drugs', image_url: 'logos_1/eli_lilly.jpg' },
+    { name: 'JPMorgan Chase', market_cap_b: 826.50, description: 'Major global financial services bank', image_url: 'logos_1/jpmorgan_chase.jpg' },
+    { name: 'Walmart', market_cap_b: 817.05, description: 'Largest worldwide retailer', image_url: 'logos_1/walmart.jpg' },
+    { name: 'Tencent', market_cap_b: 750.21, description: 'Gaming, social media, and fintech', image_url: 'logos_1/tencent.jpg' },
+    { name: 'Visa', market_cap_b: 636.90, description: 'Global payments technology network', image_url: 'logos_1/visa.jpg' },
+    { name: 'Oracle', market_cap_b: 635.29, description: 'Cloud and database software', image_url: 'logos_1/oracle.jpg' },
+    { name: 'Exxon Mobil', market_cap_b: 503.04, description: 'Oil and gas exploration', image_url: 'logos_1/exxon_mobil.jpg' },
+    { name: 'Mastercard', market_cap_b: 490.06, description: 'Payments processing and financial technology', image_url: 'logos_1/mastercard.jpg' },
+    { name: 'Johnson & Johnson', market_cap_b: 472.05, description: 'Pharmaceuticals and medical devices', image_url: 'logos_1/johnson_johnson.jpg' },
+    { name: 'Netflix', market_cap_b: 471.26, description: 'Global streaming entertainment service', image_url: 'logos_1/netflix.jpg' },
+    { name: 'Samsung', market_cap_b: 434.58, description: 'Electronics, memory chips, appliances', image_url: 'logos_1/samsung.jpg' },
+    { name: 'Palantir', market_cap_b: 414.74, description: 'Big data analytics and AI', image_url: 'logos_1/palantir.jpg' },
+    { name: 'AbbVie', market_cap_b: 410.66, description: 'Research-based pharmaceutical company', image_url: 'logos_1/abbvie.jpg' },
+    { name: 'Costco', market_cap_b: 409.04, description: 'Membership warehouse club retail', image_url: 'logos_1/costco.jpg' },
+    { name: 'Agricultural Bank of China', market_cap_b: 406.98, description: 'Commercial and retail banking', image_url: 'logos_1/agricultural_bank_of_china.jpg' },
+    { name: 'AMD', market_cap_b: 401.81, description: 'Microprocessors and graphics processing units', image_url: 'logos_1/amd.jpg' },
+    { name: 'ASML', market_cap_b: 395.99, description: 'Semiconductor equipment lithography systems', image_url: 'logos_1/asml.jpg' },
+    { name: 'ICBC', market_cap_b: 384.51, description: 'Largest commercial bank in China', image_url: 'logos_1/icbc.jpg' },
+    { name: 'Bank of America', market_cap_b: 384.18, description: 'Major US multinational bank', image_url: 'logos_1/bank_of_america.jpg' },
+    { name: 'Alibaba', market_cap_b: 382.86, description: 'E-commerce, cloud, and logistics', image_url: 'logos_1/alibaba.jpg' },
+    { name: 'LVMH', market_cap_b: 373.62, description: 'Global luxury goods conglomerate', image_url: 'logos_1/lvmh.jpg' },
+    { name: 'Home Depot', market_cap_b: 360.68, description: 'Home improvement supplies retailer', image_url: 'logos_1/home_depot.jpg' },
+    { name: 'Procter & Gamble', market_cap_b: 345.06, description: 'Consumer goods and household products', image_url: 'logos_1/procter_gamble.jpg' },
+    { name: 'General Electric', market_cap_b: 321.52, description: 'Aerospace, power, and renewable energy', image_url: 'logos_1/general_electric.jpg' },
+    { name: 'Chevron', market_cap_b: 315.13, description: 'Integrated energy and chemicals company', image_url: 'logos_1/chevron.jpg' },
+    { name: 'Prosus', market_cap_b: 308.42, description: 'Global consumer internet group', image_url: 'logos_1/prosus.jpg' },
+    { name: 'Cisco', market_cap_b: 307.37, description: 'Networking hardware and telecommunications', image_url: 'logos_1/cisco.jpg' },
+    { name: 'Coca-Cola', market_cap_b: 306.10, description: 'Global beverage company', image_url: 'logos_1/coca_cola.jpg' },
+    { name: 'UnitedHealth', market_cap_b: 291.55, description: 'Managed healthcare and insurance', image_url: 'logos_1/unitedhealth.jpg' },
+    { name: 'China Construction Bank', market_cap_b: 290.09, description: 'Large commercial state-owned bank', image_url: 'logos_1/china_construction_bank.jpg' },
+    { name: 'SAP', market_cap_b: 286.70, description: 'Enterprise application software and cloud', image_url: 'logos_1/sap.jpg' },
+    { name: 'IBM', market_cap_b: 285.73, description: 'IT, consulting, and cloud computing', image_url: 'logos_1/ibm.jpg' },
+    { name: 'AstraZeneca', market_cap_b: 277.13, description: 'Pharmaceuticals and biotechnology research', image_url: 'logos_1/astrazeneca.jpg' },
+    { name: 'Micron Technology', market_cap_b: 277.05, description: 'Memory and storage solutions', image_url: 'logos_1/micron_technology.jpg' },
+    { name: 'Toyota', market_cap_b: 270.46, description: 'Leading global automotive manufacturer', image_url: 'logos_1/toyota.jpg' },
+    { name: 'Hermès', market_cap_b: 267.03, description: 'French luxury goods house', image_url: 'logos_1/hermes.jpg' },
+    { name: 'Wells Fargo', market_cap_b: 266.97, description: 'US banking and financial services', image_url: 'logos_1/wells_fargo.jpg' },
+    { name: 'SK Hynix', market_cap_b: 265.90, description: 'Semiconductors and memory chips', image_url: 'logos_1/sk_hynix.jpg' },
+    { name: 'CATL', market_cap_b: 261.98, description: 'Electric vehicle battery giant', image_url: 'logos_1/catl.jpg' },
+    { name: 'Morgan Stanley', market_cap_b: 260.42, description: 'Investment banking and wealth management', image_url: 'logos_1/morgan_stanley.jpg' },
+    { name: 'Nestlé', market_cap_b: 260.29, description: 'World\'s largest food company', image_url: 'logos_1/nestle.jpg' },
+    { name: 'Caterpillar', market_cap_b: 259.55, description: 'Construction and mining equipment', image_url: 'logos_1/caterpillar.jpg' },
+    { name: 'Roche', market_cap_b: 258.03, description: 'Pharmaceuticals and diagnostic healthcare', image_url: 'logos_1/roche.jpg' },
+    { name: 'Kweichow Moutai', market_cap_b: 256.95, description: 'Luxury Chinese liquor producer', image_url: 'logos_1/kweichow_moutai.jpg' },
+    { name: 'Novartis', market_cap_b: 253.01, description: 'Global pharmaceutical company', image_url: 'logos_1/novartis.jpg' },
+    { name: 'HSBC', market_cap_b: 250.19, description: 'International banking and financial services', image_url: 'logos_1/hsbc.jpg' },
+    { name: 'Bank of China', market_cap_b: 247.63, description: 'State-owned commercial bank', image_url: 'logos_1/bank_of_china.jpg' },
+    { name: 'China Mobile', market_cap_b: 246.70, description: 'Largest mobile telecommunications company', image_url: 'logos_1/china_mobile.jpg' },
+    { name: 'American Express', market_cap_b: 246.04, description: 'Credit card and financial services', image_url: 'logos_1/american_express.jpg' },
+    { name: 'PetroChina', market_cap_b: 245.36, description: 'China\'s largest oil and gas firm', image_url: 'logos_1/petrochina.jpg' },
+    { name: 'Philip Morris International', market_cap_b: 241.94, description: 'Tobacco and smoke-free products', image_url: 'logos_1/philip_morris_international.jpg' },
+    { name: 'T-Mobile US', market_cap_b: 241.68, description: 'Major US wireless carrier', image_url: 'logos_1/t_mobile_us.jpg' },
+    { name: 'International Holding Company', market_cap_b: 238.65, description: 'Diversified Abu Dhabi conglomerate', image_url: 'logos_2/international_holding_company.jpg' },
+    { name: 'Goldman Sachs', market_cap_b: 237.21, description: 'Global investment banking firm', image_url: 'logos_1/goldman_sachs.jpg' },
+    { name: 'RTX', market_cap_b: 235.39, description: 'Aerospace and defense technologies', image_url: 'logos_1/rtx.jpg' },
+    { name: 'Salesforce', market_cap_b: 231.96, description: 'Cloud-based CRM software company', image_url: 'logos_1/salesforce.jpg' },
+    { name: 'Reliance Industries', market_cap_b: 231.96, description: 'Diversified conglomerate, energy to retail', image_url: 'logos_1/reliance_industries.jpg' },
+    { name: 'Merck', market_cap_b: 230.62, description: 'Pharmaceuticals, vaccines, and animal health', image_url: 'logos_1/merck.jpg' },
+    { name: 'Abbott Laboratories', market_cap_b: 227.07, description: 'Medical devices and healthcare products', image_url: 'logos_1/abbott_laboratories.jpg' },
+    { name: 'Siemens', market_cap_b: 226.79, description: 'Industrial automation and digitalization', image_url: 'logos_1/siemens.jpg' },
+    { name: "L'Oréal", market_cap_b: 224.88, description: 'World\'s largest cosmetics company', image_url: 'logos_1/l_oreal.jpg' },
+    { name: 'Shell', market_cap_b: 218.97, description: 'Oil, gas, and renewable energy', image_url: 'logos_1/shell.jpg' },
+    { name: 'McDonald', market_cap_b: 218.65, description: 'Global fast-food restaurant chain', image_url: 'logos_1/mcdonald.jpg' },
+    { name: 'Thermo Fisher Scientific', market_cap_b: 217.42, description: 'Scientific instruments and services', image_url: 'logos_1/thermo_fisher_scientific.jpg' },
+    { name: 'Novo Nordisk', market_cap_b: 217.27, description: 'Diabetes and pharmaceutical treatments', image_url: 'logos_1/novo_nordisk.jpg' },
+    { name: 'Royal Bank Of Canada', market_cap_b: 209.73, description: 'Leading Canadian multinational bank', image_url: 'logos_1/royal_bank_of_canada.jpg' },
+    { name: 'Shopify', market_cap_b: 203.43, description: 'E-commerce platform for online stores', image_url: 'logos_1/shopify.jpg' },
+    { name: 'Pepsico', market_cap_b: 199.42, description: 'Beverages and snack foods', image_url: 'logos_1/pepsico.jpg' },
+    { name: 'Linde', market_cap_b: 197.70, description: 'Industrial gases and engineering', image_url: 'logos_1/linde.jpg' },
+    { name: 'SoftBank', market_cap_b: 195.15, description: 'Technology investment holding company', image_url: 'logos_1/softbank.jpg' },
+    { name: 'Intuitive Surgical', market_cap_b: 194.79, description: 'Robotic surgical systems manufacturer', image_url: 'logos_1/intuitive_surgical.jpg' },
+    { name: 'Airbus', market_cap_b: 191.00, description: 'Global aircraft manufacturer', image_url: 'logos_1/airbus.jpg' },
+    { name: 'Uber', market_cap_b: 190.37, description: 'Ride-hailing and food delivery', image_url: 'logos_1/uber.jpg' },
+    { name: 'Walt Disney', market_cap_b: 190.22, description: 'Entertainment, media, and theme parks', image_url: 'logos_1/walt_disney.jpg' },
+    { name: 'AppLovin', market_cap_b: 188.47, description: 'Mobile app monetization and growth', image_url: 'logos_1/applovin.jpg' },
+    { name: 'HDFC Bank', market_cap_b: 186.77, description: 'Leading Indian private sector bank', image_url: 'logos_1/hdfc_bank.jpg' },
+    { name: 'QUALCOMM', market_cap_b: 186.33, description: 'Wireless technology and semiconductors', image_url: 'logos_1/qualcomm.jpg' },
+    { name: 'Lam Research', market_cap_b: 186.21, description: 'Semiconductor manufacturing equipment', image_url: 'logos_1/lam_research.jpg' },
+    { name: 'PDD Holdings (Pinduoduo)', market_cap_b: 185.90, description: 'E-commerce platform (Temu and Pinduoduo)', image_url: 'logos_1/pdd_holdings.jpg' },
+    { name: 'Intuit', market_cap_b: 184.68, description: 'Financial software for consumers', image_url: 'logos_1/intuit.jpg' },
+    { name: 'Mitsubishi UFJ Financial', market_cap_b: 184.28, description: 'Largest Japanese banking group', image_url: 'logos_1/mitsubishi_ufj_financial.jpg' },
+    { name: 'Sony', market_cap_b: 171.04, description: 'Electronics, gaming, and entertainment', image_url: 'logos_1/sony.jpg' },
+    { name: 'AT&T', market_cap_b: 181.41, description: 'Telecommunications and mobile services', image_url: 'logos_1/att.jpg' },
+    { name: 'Amgen', market_cap_b: 181.32, description: 'Biopharmaceutical and human therapeutics', image_url: 'logos_1/amgen.jpg' },
+    { name: 'Applied Materials', market_cap_b: 180.04, description: 'Equipment for semiconductor fabrication', image_url: 'logos_1/applied_materials.jpg' },
+    { name: 'Foxconn Industrial Internet', market_cap_b: 179.79, description: 'Electronics manufacturing and smart tech', image_url: 'logos_1/foxconn_industrial_internet.jpg' },
+    { name: 'Citigroup', market_cap_b: 179.46, description: 'Multinational investment bank', image_url: 'logos_1/citigroup.jpg' },
+    { name: 'Inditex', market_cap_b: 176.47, description: 'Global fashion retailer (Zara)', image_url: 'logos_1/inditex.jpg' },
+    { name: 'ServiceNow', market_cap_b: 176.44, description: 'Cloud computing platform services', image_url: 'logos_1/servicenow.jpg' },
+    { name: 'Nextera Energy', market_cap_b: 174.68, description: 'Electric power and renewable energy', image_url: 'logos_1/nextera_energy.jpg' },
+    { name: 'Verizon', market_cap_b: 173.12, description: 'US telecommunications and wireless', image_url: 'logos_2/verizon.jpg' },
+    { name: 'Blackstone Group', market_cap_b: 172.53, description: 'Global alternative asset manager', image_url: 'logos_2/blackstone.jpg' },
+    { name: 'Commonwealth Bank', market_cap_b: 171.96, description: 'Australian multinational banking services', image_url: 'logos_2/commonwealth_bank.jpg' },
+    { name: 'EssilorLuxottica', market_cap_b: 171.60, description: 'Eyewear and lens manufacturing', image_url: 'logos_2/essilor_luxottica.jpg' },
+    { name: 'Intel', market_cap_b: 169.43, description: 'Microprocessors and computer technology', image_url: 'logos_2/intel.jpg' },
+    { name: 'Charles Schwab', market_cap_b: 167.72, description: 'Brokerage and financial services', image_url: 'logos_2/charles_schwab.jpg' },
+    { name: 'Arista Networks', market_cap_b: 165.43, description: 'Cloud networking solutions', image_url: 'logos_2/arista_networks.jpg' },
+    { name: 'Allianz SE', market_cap_b: 164.70, description: 'Global insurance and asset management', image_url: 'logos_2/allianz.jpg' },
+    { name: 'BlackRock', market_cap_b: 164.14, description: 'Investment management and tech', image_url: 'logos_2/blackrock.jpg' },
+    { name: 'Amphenol', market_cap_b: 163.70, description: 'Connectors and sensor technology', image_url: 'logos_2/amphenol.jpg' },
+    { name: 'Booking Holdings (Booking.com)', market_cap_b: 162.71, description: 'Online travel agency services', image_url: 'logos_2/booking_holdings.jpg' },
+    { name: 'TJX Companies', market_cap_b: 162.57, description: 'Off-price apparel and home goods', image_url: 'logos_2/tjx_companies.jpg' },
+    { name: 'Santander', market_cap_b: 160.65, description: 'Spanish multinational financial services', image_url: 'logos_2/santander.jpg' },
+    { name: 'Schneider Electric', market_cap_b: 157.05, description: 'Digital automation and energy management', image_url: 'logos_2/schneider_electric.jpg' },
+    { name: 'GE Vernova', market_cap_b: 156.90, description: 'Power generation and renewable energy', image_url: 'logos_2/ge_vernova.jpg' },
+    { name: 'Hitachi', market_cap_b: 156.83, description: 'IT, social infrastructure, and industrial', image_url: 'logos_2/hitachi.jpg' },
+    { name: 'China Life Insurance', market_cap_b: 156.31, description: 'Chinese life insurance provider', image_url: 'logos_2/china_life_insurance.jpg' },
+    { name: 'Danaher', market_cap_b: 156.25, description: 'Science and technology innovation', image_url: 'logos_2/danaher.jpg' },
+    { name: 'Deutsche Telekom', market_cap_b: 155.12, description: 'European telecommunications group', image_url: 'logos_2/deutsche_telekom.jpg' },
+    { name: 'Gilead Sciences', market_cap_b: 155.10, description: 'Antiviral pharmaceuticals developer', image_url: 'logos_2/gilead_sciences.jpg' },
+    { name: 'CM Bank', market_cap_b: 154.96, description: 'Chinese commercial bank', image_url: 'logos_2/cm_bank.jpg' },
+    { name: 'Boston Scientific', market_cap_b: 152.23, description: 'Medical devices manufacturer', image_url: 'logos_2/boston_scientific.jpg' },
+    { name: 'Accenture', market_cap_b: 152.06, description: 'Global consulting and strategy services', image_url: 'logos_2/accenture.jpg' },
+    { name: 'S&P Global', market_cap_b: 149.55, description: 'Financial information and analytics', image_url: 'logos_2/sp_global.jpg' },
+    { name: 'Ping An Insurance', market_cap_b: 149.38, description: 'Chinese insurance and financial services', image_url: 'logos_2/ping_an_insurance.jpg' },
+    { name: 'Safran', market_cap_b: 149.11, description: 'Aerospace and defense engines', image_url: 'logos_2/safran.jpg' },
+    { name: 'KLA', market_cap_b: 149.04, description: 'Semiconductor process control equipment', image_url: 'logos_2/kla.jpg' },
+    { name: 'Arm Holdings', market_cap_b: 148.29, description: 'Semiconductor intellectual property', image_url: 'logos_2/arm_holdings.jpg' },
+    { name: 'Boeing', market_cap_b: 147.85, description: 'Aerospace and defense manufacturer', image_url: 'logos_2/boeing.jpg' },
+    { name: 'Unilever', market_cap_b: 145.90, description: 'Consumer goods and personal care', image_url: 'logos_2/unilever.jpg' },
+    { name: 'Xiaomi', market_cap_b: 145.23, description: 'Smartphones and consumer electronics', image_url: 'logos_2/xiaomi.jpg' },
+    { name: 'Texas Instruments', market_cap_b: 144.77, description: 'Analog and embedded processing chips', image_url: 'logos_2/texas_instruments.jpg' },
+    { name: 'Pfizer', market_cap_b: 142.48, description: 'Pharmaceuticals and biotechnology products', image_url: 'logos_2/pfizer.jpg' },
+    { name: 'Bharti Airtel', market_cap_b: 142.07, description: 'Indian telecommunications services', image_url: 'logos_2/bharti_airtel.jpg' },
+    { name: 'BHP Group', market_cap_b: 141.96, description: 'Global mining and resource company', image_url: 'logos_2/bhp_group.jpg' },
+    { name: 'Toronto Dominion Bank', market_cap_b: 141.14, description: 'Canadian banking and financial services', image_url: 'logos_2/toronto_dominion_bank.jpg' },
+    { name: 'TotalEnergies', market_cap_b: 141.14, description: 'Oil, gas, and energy production', image_url: 'logos_2/totalenergies.jpg' },
+    { name: 'CNOOC', market_cap_b: 140.50, description: 'Chinese offshore oil and gas', image_url: 'logos_2/cnooc.jpg' },
+    { name: 'Palo Alto Networks', market_cap_b: 140.38, description: 'Cybersecurity and cloud protection', image_url: 'logos_2/palo_alto_networks.jpg' },
+    { name: 'Iberdrola', market_cap_b: 140.03, description: 'Renewable energy and utilities', image_url: 'logos_2/iberdrola.jpg' },
+    { name: 'Adobe', market_cap_b: 138.60, description: 'Creative and digital experience software', image_url: 'logos_2/adobe.jpg' },
+    { name: 'Stryker Corporation', market_cap_b: 138.52, description: 'Medical equipment and technology', image_url: 'logos_2/stryker.jpg' },
+    { name: 'Eaton', market_cap_b: 136.86, description: 'Power management company', image_url: 'logos_2/eaton.jpg' },
+    { name: 'CrowdStrike', market_cap_b: 134.90, description: 'Cloud-native cybersecurity technology', image_url: 'logos_2/crowdstrike.jpg' },
+    { name: 'Capital One', market_cap_b: 134.23, description: 'Banking and credit card company', image_url: 'logos_2/capital_one.jpg' },
+    { name: 'Welltower', market_cap_b: 133.02, description: 'Healthcare real estate trust', image_url: 'logos_2/welltower.jpg' },
+    { name: 'Union Pacific Corporation', market_cap_b: 132.28, description: 'Freight rail transportation', image_url: 'logos_2/union_pacific.jpg' },
+    { name: 'Progressive', market_cap_b: 132.04, description: 'Car insurance and financial services', image_url: 'logos_2/progressive.jpg' },
+    { name: 'Spotify', market_cap_b: 130.89, description: 'Music and podcast streaming service', image_url: 'logos_2/spotify.jpg' },
+    { name: 'ABB', market_cap_b: 129.33, description: 'Robotics and industrial automation', image_url: 'logos_2/abb.jpg' },
+    { name: 'Deere & Company (John Deere)', market_cap_b: 128.73, description: 'Agricultural machinery manufacturer', image_url: 'logos_2/deere.jpg' },
+    { name: 'Lowe\'s Companies', market_cap_b: 127.78, description: 'Home improvement retail stores', image_url: 'logos_2/lowes.jpg' },
+    { name: 'Sanofi', market_cap_b: 127.01, description: 'Global pharmaceutical and healthcare company', image_url: 'logos_2/sanofi.jpg' },
+    { name: 'Tata Consultancy Services', market_cap_b: 126.77, description: 'IT services and consulting', image_url: 'logos_2/tata_consultancy_services.jpg' },
+    { name: 'Honeywell', market_cap_b: 126.36, description: 'Industrial technology and aerospace', image_url: 'logos_2/honeywell.jpg' },
+    { name: 'Dior', market_cap_b: 126.10, description: 'French luxury fashion house', image_url: 'logos_2/dior.jpg' },
+    { name: 'Anheuser-Busch Inbev', market_cap_b: 125.46, description: 'Global brewing company', image_url: 'logos_2/anheuser_busch_inbev.jpg' },
+    { name: 'BYD', market_cap_b: 125.24, description: 'Chinese electric vehicle maker', image_url: 'logos_2/byd.jpg' },
+    { name: 'Compagnie Financière Richemont', market_cap_b: 124.42, description: 'Swiss luxury goods holding', image_url: 'logos_2/richemont.jpg' },
+    { name: 'Rolls-Royce Holdings', market_cap_b: 124.37, description: 'Aerospace and defense engines', image_url: 'logos_2/rolls_royce.jpg' },
+    { name: 'Banco Bilbao Vizcaya Argentaria', market_cap_b: 123.21, description: 'Spanish multinational financial services', image_url: 'logos_2/bbva.jpg' },
+    { name: 'Medtronic', market_cap_b: 122.96, description: 'Medical technology and devices', image_url: 'logos_2/medtronic.jpg' },
+    { name: 'UBS', market_cap_b: 122.22, description: 'Swiss global financial services firm', image_url: 'logos_2/ubs.jpg' },
+    { name: 'British American Tobacco', market_cap_b: 120.59, description: 'Multinational tobacco products company', image_url: 'logos_2/british_american_tobacco.jpg' },
+    { name: 'DBS Group', market_cap_b: 118.45, description: 'Singaporean multinational banking', image_url: 'logos_2/dbs_group.jpg' },
+    { name: 'Intesa Sanpaolo', market_cap_b: 117.06, description: 'Italian banking and finance', image_url: 'logos_2/intesa_sanpaolo.jpg' },
+    { name: 'Chubb', market_cap_b: 116.29, description: 'Property and casualty insurance', image_url: 'logos_2/chubb.jpg' },
+    { name: 'China Shenhua Energy', market_cap_b: 116.09, description: 'Coal and power generation', image_url: 'logos_2/china_shenhua_energy.jpg' },
+    { name: 'Analog Devices', market_cap_b: 115.55, description: 'Semiconductors and signal processing', image_url: 'logos_2/analog_devices.jpg' },
+    { name: 'Rio Tinto', market_cap_b: 114.94, description: 'Global mining group', image_url: 'logos_2/rio_tinto.jpg' },
+    { name: 'Air Liquide', market_cap_b: 114.91, description: 'Industrial gases and services', image_url: 'logos_2/air_liquide.jpg' },
+    { name: 'UniCredit', market_cap_b: 114.39, description: 'Pan-European commercial bank', image_url: 'logos_2/unicredit.jpg' },
+    { name: 'Prologis', market_cap_b: 114.09, description: 'Logistics real estate trust', image_url: 'logos_2/prologis.jpg' },
+    { name: 'Sumitomo Mitsui Financial Group', market_cap_b: 113.59, description: 'Japanese banking and financial services', image_url: 'logos_2/sumitomo_mitsui_financial_group.jpg' },
+    { name: 'AIA', market_cap_b: 113.31, description: 'Life insurance and financial services', image_url: 'logos_2/aia.jpg' },
+    { name: 'Fast Retailing', market_cap_b: 113.20, description: 'Global apparel retailer (Uniqlo)', image_url: 'logos_2/fast_retailing.jpg' },
+    { name: 'ConocoPhillips', market_cap_b: 112.90, description: 'Oil and gas exploration', image_url: 'logos_2/conocophillips.jpg' },
+    { name: 'Zijin Mining', market_cap_b: 112.72, description: 'Gold and copper mining', image_url: 'logos_2/zijin_mining.jpg' },
+    { name: 'ICICI Bank', market_cap_b: 112.43, description: 'Indian banking and financial services', image_url: 'logos_2/icici_bank.jpg' },
+    { name: 'Interactive Brokers', market_cap_b: 112.24, description: 'Brokerage and trading platform', image_url: 'logos_2/interactive_brokers.jpg' },
+    { name: 'KKR & Co.', market_cap_b: 111.03, description: 'Global investment firm', image_url: 'logos_2/kkr.jpg' },
+    { name: 'Vertex Pharmaceuticals', market_cap_b: 110.91, description: 'Biotechnology and drug discovery', image_url: 'logos_2/vertex_pharmaceuticals.jpg' },
+    { name: 'Robinhood', market_cap_b: 110.15, description: 'Financial trading platform', image_url: 'logos_2/robinhood.jpg' },
+    { name: 'Foxconn (Hon Hai Precision Industry)', market_cap_b: 108.85, description: 'Electronics manufacturing services', image_url: 'logos_2/foxconn.jpg' },
+    { name: 'HCA Healthcare', market_cap_b: 107.85, description: 'Hospital and healthcare facilities', image_url: 'logos_2/hca_healthcare.jpg' },
+    { name: 'Lockheed Martin', market_cap_b: 107.77, description: 'Aerospace, arms, and security', image_url: 'logos_2/lockheed_martin.jpg' },
+    { name: 'Al Rajhi Bank', market_cap_b: 107.73, description: 'Largest Islamic bank', image_url: 'logos_2/al_rajhi_bank.jpg' },
+    { name: 'Southern Copper', market_cap_b: 107.04, description: 'Copper mining and production', image_url: 'logos_2/southern_copper.jpg' },
+    { name: 'Brookfield Corporation', market_cap_b: 105.78, description: 'Asset management and real estate', image_url: 'logos_2/brookfield.jpg' },
+    { name: 'Constellation Energy', market_cap_b: 105.71, description: 'Electric power generation', image_url: 'logos_2/constellation_energy.jpg' },
+    { name: 'Enbridge', market_cap_b: 105.37, description: 'Energy infrastructure and pipelines', image_url: 'logos_2/enbridge.jpg' },
+    { name: 'Enel', market_cap_b: 105.12, description: 'Italian energy and utilities', image_url: 'logos_2/enel.jpg' },
+    { name: 'Parker-Hannifin', market_cap_b: 104.98, description: 'Motion and control technologies', image_url: 'logos_2/parker_hannifin.jpg' },
+    { name: 'McKesson', market_cap_b: 103.93, description: 'Pharmaceutical distribution and IT', image_url: 'logos_2/mckesson.jpg' },
+    { name: 'MercadoLibre', market_cap_b: 103.87, description: 'Latin American e-commerce giant', image_url: 'logos_2/mercadolibre.jpg' },
+    { name: 'TAQA', market_cap_b: 103.79, description: 'Abu Dhabi energy and water', image_url: 'logos_2/taqa.jpg' },
+    { name: 'Investor AB', market_cap_b: 103.28, description: 'Swedish holding company', image_url: 'logos_2/investor_ab.jpg' },
+    { name: 'CME Group', market_cap_b: 102.78, description: 'Derivatives and futures exchange', image_url: 'logos_2/cme_group.jpg' },
+    { name: 'Zurich Insurance Group', market_cap_b: 102.56, description: 'Global insurance company', image_url: 'logos_3/zurich_insurance_group.jpg' },
+];
+
+    let currentCompany = null;
+    let nextCompany = null;
+    let score = 0;
+
+    // --- DOM Elements (References) ---
+    const finalScoreElement = document.getElementById('final-score');
+    const scoreElement = document.getElementById('current-score');
+    const gameMessageElement = document.getElementById('game-message');
+    
+    // Cards
+    const currentCard = document.getElementById('current-card');
+    const nextCard = document.getElementById('next-card');
+    const currentOverlay = document.getElementById('current-overlay');
+    const nextOverlay = document.getElementById('next-overlay');
+    
+    // Card Text Elements
+    const currentCapElement = currentCard.querySelector('.card-value');
+    const nextCapElement = nextCard.querySelector('.card-value');
+
+    // OR Separator
+    const orContainer = document.getElementById('or-container');
+    const orText = document.getElementById('or-text');
+    const orScore = document.getElementById('or-score');
+    const playScreen = document.getElementById('play-screen');
+
+    // Highscore DOM refs (NEW)
+    const bestScoreValue = document.getElementById('best-score-value');
+    const endHighscoreValue = document.getElementById('end-highscore-value');
+    const newRecordBadge = document.getElementById('new-record');
+
+
+
+    // --- Helper Functions ---
+// --- Share Score Function ---
+function shareScore() {
+    const score = document.getElementById('final-score')?.textContent || '0';
+    const website = 'https://marketcapgame.com';
+    const shareText = `I scored ${score} on Higher or Lower Market Cap! Let's see how high you can score! ${website}`;
+    if (navigator.share) {
+        navigator.share({
+            title: 'Higher or Lower Market Cap',
+            text: shareText,
+            url: website
+        }).catch(() => {});
+    } else {
+        // Fallback: copy to clipboard
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareText).then(() => {
+                showShareNotification('Score copied to clipboard!');
+            }, () => {
+                showShareNotification('Could not copy score.');
+            });
+        } else {
+            showShareNotification('Sharing not supported.');
+        }
+    }
+}
+
+function showShareNotification(msg) {
+    let notif = document.getElementById('share-notification');
+    if (!notif) {
+        notif = document.createElement('div');
+        notif.id = 'share-notification';
+        notif.style.position = 'fixed';
+        notif.style.top = '24px';
+        notif.style.left = '50%';
+        notif.style.transform = 'translateX(-50%)';
+        notif.style.background = '#222';
+        notif.style.color = '#fff';
+        notif.style.padding = '12px 24px';
+        notif.style.borderRadius = '8px';
+        notif.style.zIndex = '9999';
+        notif.style.fontSize = '1.1rem';
+        notif.style.boxShadow = '0 2px 8px rgba(0,0,0,0.18)';
+        document.body.appendChild(notif);
+    }
+    notif.textContent = msg;
+    notif.style.display = 'block';
+    setTimeout(() => { notif.style.display = 'none'; }, 1800);
+}
+
+     // --- Highscore helpers 
+    function getStoredHighscore() {
+        const v = localStorage.getItem('hiLoHighscore');
+        return v ? Number(v) : 0;
+    }
+    function setStoredHighscore(value) {
+        localStorage.setItem('hiLoHighscore', String(value));
+    }
+    function updateHighscoreDisplays() {
+        const hs = getStoredHighscore();
+        if (bestScoreValue) bestScoreValue.textContent = hs;
+        if (endHighscoreValue) endHighscoreValue.textContent = hs;
+    }
+
+    function showScreen(screenId) {
+        document.querySelectorAll('.game-screen').forEach(screen => {
+            screen.classList.remove('active');
+            screen.classList.add('hidden');
+        });
+        const target = document.getElementById(screenId);
+        target.classList.remove('hidden');
+        target.classList.add('active');
+
+        // keep highscore UI up-to-date whenever screens change
+        updateHighscoreDisplays();
+
+        // hide new-record badge unless we're on game-over
+        if (screenId !== 'game-over-screen' && newRecordBadge) newRecordBadge.style.display = 'none';
+
+        // optional: control start/end videos (if present)
+        const startVid = document.getElementById('start-screen-video');
+        const endVid = document.getElementById('end-screen-video');
+        if (screenId === 'start-screen') {
+            startVid?.play().catch(()=>{});
+            endVid?.pause();
+            if (endVid) endVid.currentTime = 0;
+        } else if (screenId === 'game-over-screen') {
+            endVid?.play().catch(()=>{});
+            startVid?.pause();
+            if (startVid) startVid.currentTime = 0;
+        } else {
+            startVid?.pause();
+            endVid?.pause();
+        }
+            setInfoButtonVisibility(screenId);
+    }
+        // Show/hide info icon only on start and end screens
+        function setInfoButtonVisibility(screenId) {
+            const infoBtn = document.getElementById('infoButton');
+            if (!infoBtn) return;
+            if (screenId === 'start-screen' || screenId === 'game-over-screen') {
+                infoBtn.style.display = '';
+            } else {
+                infoBtn.style.display = 'none';
+            }
+        }
+    
+    function formatCap(cap, isTrillion = false) {
+    cap = Math.max(0, cap);
+    if (isTrillion) {
+        return '$' + cap.toLocaleString('en-US', { maximumFractionDigits: 2 }) + 'T';
+    }
+    return '$' + cap.toLocaleString('en-US') + 'B';
+    }
+    
+    function getRandomCompany(excludeName) {
+        if (companies.length === 0) return null;
+        let company;
+        do {
+            const randomIndex = Math.floor(Math.random() * companies.length);
+            company = companies[randomIndex];
+        } while (company && company.name === excludeName);
+        return company;
+    }
+    function capToBillions(company) {
+    if (!company) return 0;
+    if (company.market_cap_b !== undefined && !isNaN(Number(company.market_cap_b))) {
+        return Number(company.market_cap_b);
+    }
+    if (company.market_cap_t !== undefined && !isNaN(Number(company.market_cap_t))) {
+        return Number(company.market_cap_t) * 1000; // 1T = 1000B
+    }
+    return 0;
+    }
+    // Function to set card visuals
+    function setCard(cardElement, company, showCap = false) {
+    const imageUrl = company ? company.image_url : 'https://picsum.photos/1200/800?random=0'; 
+    cardElement.style.backgroundImage = `url('${imageUrl}')`;
+    cardElement.querySelector('.h1').textContent = company ? company.name : 'Data Not Ready';
+    
+    let descElement = cardElement.querySelector('.card-description');
+    if (!descElement) {
+        descElement = document.createElement('div');
+        descElement.className = 'card-description';
+        cardElement.querySelector('.card-overlay').appendChild(descElement);
+    }
+    descElement.textContent = company ? company.description : '';
+    
+    const capElement = cardElement.querySelector('.card-value');
+    const isTrillion = company && company.market_cap_t !== undefined;
+    const capValue = isTrillion ? company.market_cap_t : company.market_cap_b;
+    
+    if (showCap && company) {
+        capElement.textContent = formatCap(capValue, isTrillion);
+        capElement.style.display = 'inline-block';
+    } else if (cardElement.id === 'next-card') {
+        capElement.textContent = 'Value: ???';
+        capElement.style.display = 'inline-block';
+    } else {
+        capElement.textContent = ''; 
+    }
+
+    // Reset transition properties
+    cardElement.style.transition = 'none';
+    cardElement.style.transform = 'translateX(0)';
+}
+
+    // --- Animation Function for Value Reveal ---
+    function animateValueReveal(capElement, targetValue, duration = 1500, isTrillion = false) {
+    if (!capElement) return;
+
+    // Non-trillion path: animate 0 -> targetValue (billions)
+    if (!isTrillion) {
+        const start = 0;
+        const end = Number(targetValue) || 0;
+        let startTime = null;
+        function step(ts) {
+            if (!startTime) startTime = ts;
+            const progress = Math.min(1, (ts - startTime) / duration);
+            const current = Math.floor(start + (end - start) * progress);
+            capElement.textContent = formatCap(current, false);
+            if (progress < 1) requestAnimationFrame(step);
+            else capElement.textContent = formatCap(end, false);
+        }
+        requestAnimationFrame(step);
+        return;
+    }
+
+    // Trillion path: two-phase animation
+    // Phase 1: 0 -> 1000 (display in B)
+    // Phase 2: 1 -> targetValue (display in T)
+    const targetT = Number(targetValue) || 0;
+    const firstPhaseMs = Math.max(250, Math.round(duration * 0.45)); // ensure reasonable minimum
+    const secondPhaseMs = Math.max(250, duration - firstPhaseMs);
+
+    // Phase 1
+    let startTime1 = null;
+    function step1(ts) {
+        if (!startTime1) startTime1 = ts;
+        const progress = Math.min(1, (ts - startTime1) / firstPhaseMs);
+        const currentB = Math.floor(0 + (1000 - 0) * progress); // 0 -> 1000B
+        capElement.textContent = formatCap(currentB, false);
+        if (progress < 1) {
+            requestAnimationFrame(step1);
+        } else {
+            // Brief pause so user sees 1000B as transition point
+            setTimeout(() => {
+                // Phase 2: animate from 1T -> targetT
+                let startTime2 = null;
+                const startT = 1;
+                function step2(ts2) {
+                    if (!startTime2) startTime2 = ts2;
+                    const progress2 = Math.min(1, (ts2 - startTime2) / secondPhaseMs);
+                    const currentT = startT + (targetT - startT) * progress2;
+                    // show up to 3 decimal places during animation for smoothness
+                    capElement.textContent = formatCap(Number(currentT.toFixed(3)), true);
+                    if (progress2 < 1) {
+                        requestAnimationFrame(step2);
+                    } else {
+                        capElement.textContent = formatCap(targetT, true);
+                    }
+                }
+                requestAnimationFrame(step2);
+            }, 120); // small gap between phases for clarity
+        }
+    }
+
+    requestAnimationFrame(step1);
+}
+
+    // --- Core Game Functions ---
+
+    function startGame() {
+        if (companies.length < 2) {
+             gameMessageElement.textContent = "Error: Not enough data loaded to start the game!";
+             return;
+        }
+        score = 0;
+        currentCompany = getRandomCompany();
+        nextCompany = getRandomCompany(currentCompany.name);
+        
+        gameMessageElement.style.display = 'none';
+
+        // Reset borders
+        currentOverlay.className = 'card-overlay';
+        nextOverlay.className = 'card-overlay';
+
+        // Set initial card states
+        setCard(currentCard, currentCompany, true);
+        setCard(nextCard, nextCompany, false);
+
+        // Enable clicks
+        currentCard.style.pointerEvents = 'auto';
+        nextCard.style.pointerEvents = 'auto';
+
+        updateDisplay();
+    }
+
+    function makeGuess(userGuess) {
+    if (!currentCompany || !nextCompany) return;
+
+    // Determine which card was clicked and apply the white border (shrink) animation
+    const guessedOverlay = (userGuess === 'lower') ? currentOverlay : nextOverlay;
+    const nonGuessedOverlay = (userGuess === 'lower') ? nextOverlay : currentOverlay;
+    
+    guessedOverlay.classList.add('guess-border');
+    // show divider "guess" state (keeps white while border anim runs)
+    playScreen?.classList.add('divider-guess');
+    
+    currentCard.style.pointerEvents = 'none';
+    nextCard.style.pointerEvents = 'none';
+
+    // Use unified values (in billions) for comparison so trillions are larger than billions
+    const currentCapNum = capToBillions(currentCompany);
+    const nextCapNum = capToBillions(nextCompany);
+    const isHigher = nextCapNum > currentCapNum;
+    const correctAnswer = isHigher ? 'higher' : 'lower';
+    
+    const currentCapText = formatCap(currentCompany.market_cap_t || currentCompany.market_cap_b, currentCompany.market_cap_t !== undefined);
+    const nextCapText = formatCap(nextCompany.market_cap_t || nextCompany.market_cap_b, nextCompany.market_cap_t !== undefined);
+    
+    // --- REVEAL VALUE WITH ANIMATION ---
+    animateValueReveal(nextCapElement, nextCompany.market_cap_t || nextCompany.market_cap_b, 1500, nextCompany.market_cap_t !== undefined); 
+
+        // Wait for animation to finish before deciding the outcome
+        setTimeout(() => {
+        const isCorrect = userGuess === correctAnswer;
+        
+        // --- BORDER REVEAL (White to Green/Red) ---
+        guessedOverlay.classList.remove('guess-border'); // Remove white border class first
+        
+        if (isCorrect) {
+            // turn border green
+            guessedOverlay.classList.add('correct-border');
+            // turn divider green in sync
+            playScreen?.classList.remove('divider-guess');
+            playScreen?.classList.add('correct-divider');
+    
+    // --- CORRECT GUESS: Advance Game ---
+    score++;
+    
+    // Hide OR, show score popup
+    orText.style.visibility = 'hidden';
+    const scorePopup = document.getElementById('score-popup');
+    scorePopup.textContent = `+${score}`;
+    scorePopup.style.display = 'block';
+    scorePopup.classList.remove('fade-in');
+    // Force reflow for transition
+    void scorePopup.offsetWidth;
+    scorePopup.classList.add('fade-in');
+
+    // <-- DELAY SLIDE BY 2000ms -->
+    setTimeout(() => {
+        // Card transition: current slides out left, next moves to the left position
+        currentCard.style.transition = 'transform 0.6s ease-in, opacity 0.6s ease-in';
+        currentCard.style.transform = 'translateX(-120%)';
+        currentCard.style.opacity = '0';
+
+        nextCard.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
+        nextCard.style.transform = 'translateX(-100%)'; 
+
+        // After animation, reset and prepare for next round
+        setTimeout(() => {
+            // Reset animations and overlays
+            orText.style.visibility = 'visible';
+            scorePopup.classList.remove('fade-in');
+            setTimeout(() => { scorePopup.style.display = 'none'; }, 350);
+            orContainer.classList.remove('correct-anim');
+            orContainer.classList.remove('score-anim');
+            orScore.style.transform = 'scale(0)';
+            gameMessageElement.style.display = 'none';
+            guessedOverlay.classList.remove('correct-border');
+            playScreen?.classList.remove('correct-divider');
+            // Next company becomes the new current
+            currentCompany = nextCompany;
+            nextCompany = getRandomCompany(currentCompany.name);
+
+            // --- Reset Positions and Redraw ---
+            currentCard.style.transition = 'none';
+            currentCard.style.transform = 'translateX(0)';
+            currentCard.style.opacity = '1';
+            
+            nextCard.style.transition = 'none';
+            nextCard.style.transform = 'translateX(0)'; 
+            
+            setCard(currentCard, currentCompany, true); 
+            setCard(nextCard, nextCompany, false); 
+
+            // Re-enable clicks
+            currentCard.style.pointerEvents = 'auto';
+            nextCard.style.pointerEvents = 'auto';
+
+            updateDisplay();
+        }, 700); 
+    }, 2000); // 2 second wait before sliding 
+
+            } else {
+                // --- INCORRECT GUESS: GAME OVER ---
+                
+                // Incorrect: Border turns red
+                guessedOverlay.classList.add('incorrect-border');
+                playScreen?.classList.remove('divider-guess');
+                playScreen?.classList.add('incorrect-divider');
+
+                setTimeout(() => {
+                finalScoreElement.textContent = score;
+
+                // check and persist highscore
+                const prevHigh = getStoredHighscore();
+                let isNew = false;
+                if (score > prevHigh) {
+                    setStoredHighscore(score);
+                    isNew = true;
+                }
+
+                // update highscore displays and show game-over screen
+                updateHighscoreDisplays();
+                showScreen('game-over-screen');
+
+                // show 'new record' badge if needed
+                if (newRecordBadge) newRecordBadge.style.display = isNew ? 'block' : 'none';
+
+                // Reset styling for next game
+                guessedOverlay.classList.remove('incorrect-border');
+                gameMessageElement.style.display = 'none';
+                guessedOverlay.classList.remove('incorrect-border');
+                playScreen?.classList.remove('incorrect-divider');
+            }, 2000);
+            }
+        }, 1600); 
+    }
+
+    function updateDisplay() {
+        scoreElement.textContent = score;
+    }
+
+    // --- Final Execution ---
+    updateDisplay();
+    showScreen('start-screen'); 
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
