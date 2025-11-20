@@ -144,6 +144,8 @@
                                                                     width: 90vw;
                                                                     z-index: 100;
                                                                     display: none;
+                                                                    max-height: 80vh;
+                                                                    overflow-y: auto;
                                                                 }
                                                                 .privacy-modal.active {
                                                                     display: block;
@@ -844,34 +846,154 @@
             Your score increases for each correct guess. Try to beat your highscore!<br><br>
             <strong>Tip:</strong> Look at the descriptions of the companies to see what they do! The values are updated at the start of each month!
         </div>
+        <div class="imprint-modal" id="imprintModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; color:#222; max-width:480px; width:90%; padding:32px 28px 24px 28px; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); z-index:9999;">
+            <button class="close-btn" onclick="closeImprintModal()" aria-label="Close Imprint" style="position:absolute; top:18px; right:18px; font-size:2rem; background:none; border:none; color:#888; cursor:pointer;">&times;</button>
+            <h2 style="margin-top:0;">Imprint for Market Value Higher or Lower Game</h2>
+            <div style="max-height:60vh; overflow-y:auto;">
+                <p><strong>Information according to § 5 E-Commerce Act (ECG) and § 25 Media Act (MedienG)</strong></p>
+                <h3>1. Service Operator / Media Owner</h3>
+                <p>As a private individual operating this monetized service, the following details are provided:</p>
+                <p><strong>Name/Entity:</strong> David Madjarov<br>
+                <strong>Address:</strong> Schenkendorfgasse 17<br>
+                <strong>Country:</strong> Austria</p>
+                <h3>2. Contact Information</h3>
+                <p><strong>Email:</strong> <a href="mailto:marketcapgame@gmail.com">marketcapgame@gmail.com</a><br>
+                <strong>Telephone:</strong> +43 68181 467357</p>
+                <h3>3. Purpose of the Website</h3>
+                <p><strong>Editorial Policy/Basic Direction:</strong> The purpose of the website is to provide an entertaining "Higher or Lower" game based on publicly available market data. The content is for entertainment only and does not constitute financial or investment advice.</p>
+            </div>
+        </div>
+        <script>
+            function openImprintModal() {
+                document.getElementById('imprintModal').style.display = 'block';
+            }
+            function closeImprintModal() {
+                document.getElementById('imprintModal').style.display = 'none';
+            }
+        </script>
         <button class="privacy-btn" onclick="openPrivacyModal()">Privacy Policy</button>
         <button class="privacy-btn" style="margin-top:8px;" onclick="openTermsModal()">Terms of Service</button>
             <button class="privacy-btn" style="margin-top:8px;" onclick="openContactModal()">Contact Us</button>
+            <button class="privacy-btn" style="margin-top:8px;" onclick="openImprintModal()">Imprint</button>
             </div>
         </div>
         <div class="terms-modal" id="termsModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; color:#222; max-width:480px; width:90%; padding:32px 28px 24px 28px; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); z-index:9999;">
             <button class="close-btn" onclick="closeTermsModal()" aria-label="Close Terms of Service" style="position:absolute; top:18px; right:18px; font-size:2rem; background:none; border:none; color:#888; cursor:pointer;">&times;</button>
-            <h2 style="margin-top:0;">Terms of Service</h2>
-            <p>
-                By using this game, you agree to the following terms:<br><br>
-                1. This game is provided for entertainment purposes only.<br>
-                2. No guarantees are made regarding accuracy of company data.<br>
-                3. All gameplay data is stored locally and not shared.<br>
-                4. The developer is not liable for any damages or losses.<br>
-                5. Use of this game is at your own risk.<br><br>
-                For questions, contact the developer directly.
-            </p>
+            <h2 style="margin-top:0;">Terms of Service for Market Cap Game</h2>
+            <div style="max-height:60vh; overflow-y:auto;">
+                <p><strong>Effective Date:</strong> November 20, 2025</p>
+                <p>These Terms of Service govern your use of the "Market Cap Game", provided by Us.</p>
+                <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service.</p>
+                <h3>1. Acceptance of Terms</h3>
+                <p>The Service is offered subject to your acceptance without modification of all the terms and conditions contained herein and all other operating rules, policies (including, without limitation, Our Privacy Policy), and procedures that may be published from time to time by Us.</p>
+                <h3>2. Changes to These Terms</h3>
+                <p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. We will provide notice of any material changes, and what constitutes a material change will be determined at Our sole discretion. By continuing to access or use the Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
+                <h3>3. Intellectual Property Rights</h3>
+                <strong>A. Ownership:</strong>
+                <p>The Service, its original content (excluding publicly available market data), features, and functionality are and will remain the exclusive property of [Your Name/Entity Name] and its licensors. The Service is protected by copyright, trademark, and other laws of both Austria and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of [Your Name/Entity Name].</p>
+                <strong>B. Data:</strong>
+                <p>The market valuation data used in the game is sourced from publicly available information. We make no claim of ownership over the underlying market data, company names, or logos, which remain the property of their respective owners.</p>
+                <h3>4. License to Use the Service</h3>
+                <p>We grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Service for your personal, non-commercial entertainment purposes only, in accordance with these Terms.</p>
+                <h3>5. Prohibited Uses</h3>
+                <ul>
+                    <li>For any purpose that is illegal or prohibited by these Terms.</li>
+                    <li>To engage in any activity that interferes with or disrupts the Service, the servers, or networks connected to the Service.</li>
+                    <li>To attempt to gain unauthorized access to any portion or feature of the Service.</li>
+                    <li>To submit false or misleading information or impersonate any person or entity.</li>
+                    <li>To use the Service for any commercial purpose without Our express written consent.</li>
+                </ul>
+                <h3>6. Disclaimers and Limitation of Liability</h3>
+                <strong>A. Disclaimer of Warranties:</strong>
+                <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis, without any warranties of any kind, either express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance. We do not warrant that the market data used in the game is real-time, accurate, or complete. The game is for entertainment purposes only and should not be used for investment advice.</p>
+                <strong>B. Limitation of Liability:</strong>
+                <p>To the maximum extent permitted by applicable law (including mandatory consumer protection laws in Austria), in no event shall [Your Name/Entity Name], nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any market data errors; and (iv) unauthorized access, use, or alteration of your transmissions or content.</p>
+                <h3>7. Governing Law and Jurisdiction</h3>
+                <p>These Terms shall be governed and construed in accordance with the laws of Austria, without regard to its conflict of law provisions. You agree to submit to the exclusive jurisdiction of the courts of Austria to resolve any dispute arising out of these Terms or the Service.</p>
+                <h3>8. General Provisions</h3>
+                <strong>A. Severability:</strong>
+                <p>If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.</p>
+                <strong>B. Waiver:</strong>
+                <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.</p>
+                <h3>9. Contact Information</h3>
+                <p>If you have any questions about these Terms, please contact us:</p>
+                <p><strong>By Email:</strong> <a href="mailto:marketcapgame@gmail.com">marketcapgame@gmail.com</a></p>
+            </div>
         </div>
     </div>
 <div class="privacy-modal" id="privacyModal">
     <button class="close-btn" onclick="closePrivacyModal()" aria-label="Close Privacy Policy">&times;</button>
-    <h2>Privacy Policy</h2>
-    <p>
-        This site is a static game hosted on GitHub Pages. The game itself does not set cookies, run analytics, or collect, store, or share any personal data. Your high score is saved locally in your browser only (via localStorage) and never leaves your device.<br><br>
-        Because the site is served by GitHub Pages, GitHub may collect standard server logs and limited usage data (e.g., IP address, user agent, request timestamps) to operate and secure the service. For details, see the GitHub Privacy Statement: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">github.com/site-policy/privacy</a>.<br><br>
-        This page also loads third‑party assets from CDNs (e.g., Bootstrap via jsDelivr); those providers may log minimal request data in accordance with their own policies.<br><br>
-        Questions? Email us at <a href="mailto:marketcapgame@gmail.com">marketcapgame@gmail.com</a>.
-    </p>
+    <h2>Privacy Policy for Market Cap Game</h2>
+    <p><strong>Effective Date:</strong> November 20, 2025</p>
+    <p>This Privacy Policy explains how Market Cap Game manages information for the website marketcapgame.com.</p>
+    <p>We are committed to protecting the privacy of our users, particularly those within the European Economic Area (EEA), in compliance with the General Data Protection Regulation (GDPR). This policy specifically addresses how we manage information, especially in the context of using third-party services like Google AdSense.</p>
+        <h3>1. Information We Collect Directly</h3>
+        <div class="imprint-modal" id="imprintModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; color:#222; max-width:480px; width:90%; padding:32px 28px 24px 28px; border-radius:18px; box-shadow:0 8px 32px rgba(0,0,0,0.18); z-index:9999;">
+            <button class="close-btn" onclick="closeImprintModal()" aria-label="Close Imprint" style="position:absolute; top:18px; right:18px; font-size:2rem; background:none; border:none; color:#888; cursor:pointer;">&times;</button>
+            <h2 style="margin-top:0;">Imprint for Market Value Higher or Lower Game</h2>
+            <div style="max-height:60vh; overflow-y:auto;">
+                <p><strong>Information according to § 5 E-Commerce Act (ECG) and § 25 Media Act (MedienG)</strong></p>
+                <h3>1. Service Operator / Media Owner</h3>
+                <p>As a private individual operating this monetized service, the following details are provided:</p>
+                <p><strong>Name/Entity:</strong> David Madjarov<br>
+                <strong>Address:</strong> Schenkendorfgasse 17<br>
+                <strong>Country:</strong> Austria</p>
+                <h3>2. Contact Information</h3>
+                <p><strong>Email:</strong> <a href="mailto:marketcapgame@gmail.com">marketcapgame@gmail.com</a><br>
+                <strong>Telephone:</strong> +43 68181 467357</p>
+                <h3>3. Purpose of the Website</h3>
+                <p><strong>Editorial Policy/Basic Direction:</strong> The purpose of the website is to provide an entertaining "Higher or Lower" game based on publicly available market data. The content is for entertainment only and does not constitute financial or investment advice.</p>
+            </div>
+        </div>
+    <strong>A. Non-Personal Data for Functionality:</strong>
+    <ul>
+        <li><strong>High Score Data:</strong> We use your browser's Local Storage to save your game's highest score. This data is stored only on your device and is not transmitted to our servers. It is used solely to display your personal best score.</li>
+        <li><strong>Gameplay Analytics:</strong> We may collect aggregated, non-personally identifiable usage statistics (e.g., number of games played, average score) to monitor the performance of the Service.</li>
+    </ul>
+    <strong>B. Personally Identifiable Information (PII):</strong>
+    <p>The Service does not require users to register, log in, or provide any personal information (such as names, email addresses, or precise location data). We do not collect PII directly from users.</p>
+    <h3>2. Third-Party Services (Google AdSense and Advertising)</h3>
+    <p>We use Google AdSense to serve advertisements on our Service. This is the primary method by which we generate revenue and keep the Service free to use.</p>
+    <strong>A. Data Collected by Google AdSense:</strong>
+    <ul>
+        <li>Google and its third-party vendors use cookies and similar tracking technologies to serve personalized ads based on your prior visits to this and other websites. These technologies collect data that may constitute Personal Data under the GDPR, including:</li>
+        <ul>
+            <li>IP Address</li>
+            <li>Browser Type and Device Information</li>
+            <li>Operating System</li>
+            <li>Interaction with the ads on this Service and other sites.</li>
+        </ul>
+    </ul>
+    <strong>B. Legal Basis for Processing (GDPR):</strong>
+    <p>For users in the EEA, the legal basis for processing your data for advertising purposes is your explicit consent, which must be obtained through a valid Consent Management Platform (CMP).</p>
+    <p><em>Note for Publisher:</em> As an EEA-based publisher, you must implement a CMP (e.g., Google’s Funding Choices or a certified third-party CMP) that obtains user consent before any advertising-related cookies are loaded.</p>
+    <strong>C. User Choice and Control (Opt-Out):</strong>
+    <ul>
+        <li><strong>Personalized Advertising:</strong> Users may withdraw consent at any time. They may also manage ad settings by visiting Google’s Ads Settings.</li>
+        <li><strong>Third-Party Vendors:</strong> Users can also opt out of some third-party vendors' use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li>
+    </ul>
+    <h3>3. Cookies and Tracking Technologies</h3>
+    <ul>
+        <li><strong>Functional Cookies/Local Storage:</strong> We use local storage for gameplay (High Score data). This is based on our legitimate interest to provide the core functionality of the game.</li>
+        <li><strong>Advertising Cookies:</strong> Third parties (like Google AdSense) use cookies for targeted advertising based on user consent (required for EEA users).</li>
+    </ul>
+    <h3>4. Your Rights Under GDPR (For EEA Residents)</h3>
+    <p>If you are a resident of the European Economic Area (EEA), you have the following data protection rights:</p>
+    <ul>
+        <li><strong>Right to Access:</strong> The right to request copies of your Personal Data.</li>
+        <li><strong>Right to Rectification:</strong> The right to request that we correct any information you believe is inaccurate.</li>
+        <li><strong>Right to Erasure (Right to be Forgotten):</strong> The right to request that we erase your Personal Data (though we collect very little directly).</li>
+        <li><strong>Right to Restrict Processing:</strong> The right to object to or request that we restrict the processing of your Personal Data.</li>
+        <li><strong>Right to Data Portability:</strong> The right to have the data we collect transferred to another organization or directly to you.</li>
+    </ul>
+    <p>To exercise these rights, please use the contact information provided below. You also have the right to lodge a complaint with your local data protection authority (e.g., the Österreichische Datenschutzbehörde in Austria).</p>
+    <h3>5. Children’s Privacy (COPPA/GDPR)</h3>
+    <p>This Service is intended for a general audience and is not directed to children under the age of 16 (the GDPR standard for many EU countries, including Austria, for digital consent). We do not knowingly collect Personal Data from children under 16.</p>
+    <h3>6. Changes to This Privacy Policy</h3>
+    <p>We may update our Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page.</p>
+    <h3>7. Contact Us</h3>
+    <p>If you have any questions about this Privacy Policy or wish to exercise your data subject rights, please contact us:</p>
+    <p><strong>By Email:</strong> <a href="mailto:marketcapgame@gmail.com">marketcapgame@gmail.com</a></p>
 </div>
 </div>
 <div class="screen-container">
@@ -1216,7 +1338,7 @@
     { name: 'PetroChina', market_cap_b: 245.36, description: 'China\'s largest oil and gas firm', image_url: 'logos_1/petrochina.jpg' },
     { name: 'Philip Morris International', market_cap_b: 241.94, description: 'Tobacco and smoke-free products', image_url: 'logos_1/philip_morris_international.jpg' },
     { name: 'T-Mobile US', market_cap_b: 241.68, description: 'Major US wireless carrier', image_url: 'logos_1/t_mobile_us.jpg' },
-    { name: 'International Holding Company', market_cap_b: 238.65, description: 'Diversified Abu Dhabi conglomerate', image_url: 'logos_2/international_holding_company.jpg' },
+    { name: 'International Holding Company', market_cap_b: 238.65, description: 'Diversified Abu Dhabi conglomerate', image_url: 'logos_1/international_holding_company.jpg' },
     { name: 'Goldman Sachs', market_cap_b: 237.21, description: 'Global investment banking firm', image_url: 'logos_1/goldman_sachs.jpg' },
     { name: 'RTX', market_cap_b: 235.39, description: 'Aerospace and defense technologies', image_url: 'logos_1/rtx.jpg' },
     { name: 'Salesforce', market_cap_b: 231.96, description: 'Cloud-based CRM software company', image_url: 'logos_1/salesforce.jpg' },
