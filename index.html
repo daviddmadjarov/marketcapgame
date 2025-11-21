@@ -41,7 +41,7 @@
                                                                                     background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg"><path fill="%23b8924f" fill-opacity="0.70" d="M0,80 Q360,120 720,80 Q1080,40 1440,100 V900 H0 Z"/><path fill="%23c9b27c" fill-opacity="0.48" d="M0,200 Q360,240 720,200 Q1080,160 1440,220 V900 H0 Z"/><path fill="%23bfa36b" fill-opacity="0.42" d="M0,320 Q360,360 720,320 Q1080,280 1440,340 V900 H0 Z"/><path fill="%23c9b27c" fill-opacity="0.48" d="M0,440 Q360,480 720,440 Q1080,400 1440,460 V900 H0 Z"/><path fill="%23bfa36b" fill-opacity="0.42" d="M0,560 Q360,600 720,560 Q1080,520 1440,580 V900 H0 Z"/><path fill="%23c9b27c" fill-opacity="0.48" d="M0,680 Q360,720 720,680 Q1080,640 1440,700 V900 H0 Z"/><path fill="%23e2cfa1" fill-opacity="0.68" d="M0,800 Q360,840 720,800 Q1080,760 1440,820 V900 H0 Z"/></svg>');
                                                                                     background-repeat: no-repeat;
                                                                                     background-size: cover;
-                                                                                    opacity: 1;
+                                                                                    opacity: 0.3;
                                                                                 }
                                                                                 @keyframes fadeInScreen {
                                                                                     from { opacity: 0; transform: scale(1.05); }
@@ -63,21 +63,59 @@
                                                                                     letter-spacing: 1.2px;
                                                                                     font-size: clamp(2.5rem, 7vw, 4rem);
                                                                                     color: #fff;
-                                                                                    margin-bottom: 12px;
+                                                                                    opacity: 1 !important;
+                                                                                    margin-bottom: 24px;
                                                                                     text-shadow: 0 2px 12px rgba(60,40,20,0.18);
                                                                                 }
                                                                                 .title-sub {
                                                                                     color: #e0c48c;
                                                                                     font-size: 1.5rem;
                                                                                     font-weight: 700;
-                                                                                    margin-bottom: 24px;
+                                                                                    opacity: 1 !important;
+                                                                                    margin-bottom: 28px;
+                                                                                    margin-top: 12px;
                                                                                     text-shadow: 0 2px 12px rgba(60,40,20,0.18);
                                                                                 }
                                                                                 .start-controls {
                                                                                     display: flex;
                                                                                     justify-content: center;
                                                                                     margin-top: 32px;
+                                                                                    position: relative;
+                                                                                    z-index: 2;
                                                                                 }
+                                                                                /* End screen specific button color overrides */
+                                                                                .end-score-panel .btn-play-again {
+                                                                                    background:#18b85a;
+                                                                                    color:#fff;
+                                                                                    font-weight:900;
+                                                                                    border:none;
+                                                                                    box-shadow:0 28px 80px -12px rgba(24,184,90,0.65), 0 8px 28px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.6);
+                                                                                    transition: transform .25s cubic-bezier(.25,.8,.25,1);
+                                                                                }
+                                                                                .end-score-panel .btn-play-again:hover { transform: translateY(-8px); }
+                                                                                .end-score-panel .btn-play-again:active { transform: translateY(0); }
+
+                                                                                .end-score-panel #share-score-button {
+                                                                                    background:#e53935;
+                                                                                    color:#fff;
+                                                                                    font-weight:800;
+                                                                                    border:none;
+                                                                                    box-shadow:0 28px 80px -12px rgba(229,57,53,0.65), 0 8px 28px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.6);
+                                                                                    transition: transform .25s cubic-bezier(.25,.8,.25,1);
+                                                                                }
+                                                                                .end-score-panel #share-score-button:hover { transform: translateY(-8px); }
+                                                                                .end-score-panel #share-score-button:active { transform: translateY(0); }
+
+                                                                                .end-score-panel .back-menu {
+                                                                                    background:#555;
+                                                                                    color:#fff;
+                                                                                    font-weight:700;
+                                                                                    border:none;
+                                                                                    box-shadow:0 24px 70px -10px rgba(0,0,0,0.7), 0 8px 26px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.7);
+                                                                                    transition: transform .25s cubic-bezier(.25,.8,.25,1);
+                                                                                }
+                                                                                .end-score-panel .back-menu:hover { transform: translateY(-8px); }
+                                                                                .end-score-panel .back-menu:active { transform: translateY(0); }
                                                                                 @media (max-width: 720px) {
                                                                                     .game-over-hero .start-controls {
                                                                                         flex-direction: column !important;
@@ -122,6 +160,7 @@
                                                                                     transition: background 0.2s, color 0.2s, transform 0.18s;
                                                                                     outline: none;
                                                                                     animation: fadeInScreen 1.8s 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) backwards;
+                                                                                    opacity: 1 !important;
                                                                                 }
                                                                                 .pill-btn:hover, .pill-btn:focus {
                                                                                     background: #fff;
@@ -332,6 +371,9 @@
                     border-radius: 8px;
                     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
                 }
+                @media (max-width: 720px) {
+                    #best-score.highscore-top { display: none; }
+                }
         /* --- BACKGROUND PATTERN DEFINITION (For Body, Start, and End Screens) --- */
         .dotted-pattern {
             /* Dark gray background */
@@ -439,6 +481,9 @@
         }
         /* START/END screen video styling (full-bleed background) */
         #start-screen-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+        /* Particle layer (start screen) */
+        #start-particles { position:absolute; inset:0; z-index:2; pointer-events:none; overflow:hidden; }
+        .start-particle { position:absolute; width:6px; height:6px; background:#000; border-radius:50%; opacity:0; box-shadow:0 0 10px rgba(0,0,0,0.55); }
 
         /* hero / start screen layout */
         #start-screen {
@@ -534,7 +579,7 @@
         gap:12px;
         padding-bottom: 6px;
         }
-        .categories-bar h4 { color: rgba(255,255,255,0.9); font-weight:700; margin:0; }
+        .categories-bar h4 { color: #fff; font-weight:700; margin:0; opacity:1 !important; }
                 @media (max-width: 720px) {
                     .categories-bar h4 {
                         text-align: center;
@@ -580,6 +625,23 @@
         .end-waves { position:fixed; inset:0; z-index:0; pointer-events:none; background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg"><path fill="%23b8924f" fill-opacity="0.85" d="M0 0 H1440 V120 Q1080 80 720 120 Q360 80 0 120 Z"/><path fill="%23b8924f" fill-opacity="0.70" d="M0,60 Q360,100 720,60 Q1080,100 1440,60 V900 H0 Z"/><path fill="%23b8924f" fill-opacity="0.60" d="M0,140 Q360,180 720,140 Q1080,180 1440,140 V900 H0 Z"/><path fill="%23c9b27c" fill-opacity="0.50" d="M0,240 Q360,280 720,240 Q1080,260 1440,240 V900 H0 Z"/><path fill="%23bfa36b" fill-opacity="0.45" d="M0,360 Q360,400 720,360 Q1080,380 1440,360 V900 H0 Z"/><path fill="%23c9b27c" fill-opacity="0.50" d="M0,480 Q360,520 720,480 Q1080,500 1440,480 V900 H0 Z"/><path fill="%23bfa36b" fill-opacity="0.45" d="M0,600 Q360,640 720,600 Q1080,620 1440,600 V900 H0 Z"/><path fill="%23c9b27c" fill-opacity="0.50" d="M0,720 Q360,760 720,720 Q1080,740 1440,720 V900 H0 Z"/><path fill="%23e2cfa1" fill-opacity="0.65" d="M0,820 Q360,860 720,820 Q1080,840 1440,820 V900 H0 Z"/></svg>'); background-repeat:no-repeat; background-size:cover; }
         .hero-card.game-over-hero { /* uses same hero-card styling; ensure sits above video */ z-index:2; }
         .hero-card.game-over-hero .display-3 { text-shadow: 4px 4px 18px rgba(0,0,0,0.8); }
+        /* End screen score visibility boost */
+        .end-score-panel { position:relative; z-index:5; }
+        .end-score-panel .title-main,
+        .end-score-panel .title-sub,
+        .end-score-panel .display-3,
+        .end-score-panel #final-score { opacity:1 !important; filter:none !important; text-shadow:0 4px 18px rgba(0,0,0,0.65); }
+        /* Center alignment for YOUR SCORE and value */
+        .end-score-panel { text-align:center; display:flex; flex-direction:column; align-items:center; }
+        .end-score-panel .display-3 { width:100%; }
+        .end-score-panel #final-score { width:100%; }
+
+        /* Make end-screen message a bit wider on mobile */
+        @media (max-width: 720px) {
+            #end-score-message {
+                max-width: min(90vw, 600px) !important;
+            }
+        }
 
         /* --- Play Screen (Cards) --- */
         #play-screen {
@@ -1021,6 +1083,184 @@
 </div>
 
         <div id="start-screen" class="game-screen active">
+        <!-- Dynamic start screen particle layer -->
+        <div id="start-particles"></div>
+        <!-- Candle chart SVG background -->
+        <div id="candlestick-bg" style="position:absolute; inset:0; z-index:1; pointer-events:none;">
+            <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+                <defs>
+                    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b" />
+                        <feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.25  0 0 0 0.35 0" />
+                    </filter>
+                </defs>
+                <!-- MASTER ANIMATION GROUP (seamless scroll) -->
+                <g id="candleScene" opacity="0.22" clip-path="url(#clipScene)">
+                    <!-- Define clip to avoid overflow flash -->
+                    <defs>
+                        <clipPath id="clipScene"><rect x="0" y="0" width="1200" height="800" /></clipPath>
+                    </defs>
+                    <!-- BACK LAYER: two sets for wrap -->
+                    <g id="backScroll" filter="url(#glow)" opacity="0.32">
+                        <g class="backSet" transform="translate(-62,8) scale(1.207,1)">
+                            <!-- First candle made very high -->
+                            <rect x="62" y="560" width="16" height="140" fill="#0a8f3d" rx="3" />
+                            <rect x="92" y="640" width="16" height="40" fill="#c01818" rx="3" />
+                            <rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" />
+                            <rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" />
+                            <rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" />
+                            <rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" />
+                            <rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" />
+                            <rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" />
+                            <rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" />
+                            <rect x="972" y="545" width="16" height="28" fill="#c01818" rx="3" />
+                        </g>
+                        <g class="backSet" transform="translate(1040,8) scale(1.207,1)">
+                            <!-- duplicate subset with tall first candle -->
+                            <rect x="62" y="560" width="16" height="140" fill="#0a8f3d" rx="3" />
+                            <rect x="92" y="640" width="16" height="40" fill="#c01818" rx="3" />
+                            <rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" />
+                            <rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" />
+                            <rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" />
+                            <rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" />
+                            <rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" />
+                            <rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" />
+                            <rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" />
+                            <rect x="972" y="545" width="16" height="28" fill="#c01818" rx="3" />
+                        </g>
+                        <animateTransform attributeName="transform" type="translate" from="0 0" to="-1040 0" dur="65s" repeatCount="indefinite" />
+                    </g>
+                    <!-- FOREGROUND LAYER: two sets for wrap -->
+                    <g id="mainScroll" stroke-linecap="round">
+                        <g class="mainSet" transform="translate(-62,0) scale(1.207,1)">
+                            <g class="candle c0"><line x1="70"  y1="700" x2="70"  y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="62"  y="560" width="16" height="140" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c1"><line x1="100" y1="680" x2="100" y2="620" stroke="#c01818" stroke-width="3" /><rect x="92"  y="640" width="16" height="40" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.5s" begin="1.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c2"><line x1="130" y1="690" x2="130" y2="630" stroke="#0a8f3d" stroke-width="3" /><rect x="122" y="650" width="16" height="36" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 1; 0 -10; 0 1; 0 7; 0 1" dur="6.2s" begin="2.3s" repeatCount="indefinite" /></g>
+                            <g class="candle c3"><line x1="160" y1="700" x2="160" y2="640" stroke="#c01818" stroke-width="3" /><rect x="152" y="660" width="16" height="42" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -13; 0 0; 0 9; 0 0" dur="7.8s" begin="3.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c4"><line x1="190" y1="670" x2="190" y2="610" stroke="#0a8f3d" stroke-width="3" /><rect x="182" y="630" width="16" height="34" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.7s" begin="0.8s" repeatCount="indefinite" /></g>
+                            <g class="candle c5"><line x1="220" y1="660" x2="220" y2="600" stroke="#c01818" stroke-width="3" /><rect x="212" y="620" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.8s" begin="4.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c6"><line x1="260" y1="640" x2="260" y2="560" stroke="#0a8f3d" stroke-width="3" /><rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.3s" begin="2.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c7"><line x1="290" y1="620" x2="290" y2="540" stroke="#0a8f3d" stroke-width="3" /><rect x="282" y="565" width="16" height="50" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.3s" begin="1.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c8"><line x1="320" y1="600" x2="320" y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="312" y="545" width="16" height="46" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.0s" begin="3.6s" repeatCount="indefinite" /></g>
+                            <g class="candle c9"><line x1="350" y1="560" x2="350" y2="500" stroke="#c01818" stroke-width="3" /><rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.6s" begin="2.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c10"><line x1="380" y1="520" x2="380" y2="460" stroke="#0a8f3d" stroke-width="3" /><rect x="372" y="478" width="16" height="34" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.0s" begin="1.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c11"><line x1="410" y1="500" x2="410" y2="440" stroke="#c01818" stroke-width="3" /><rect x="402" y="460" width="16" height="30" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" begin="3.8s" repeatCount="indefinite" /></g>
+                            <g class="candle c12"><line x1="450" y1="480" x2="450" y2="400" stroke="#0a8f3d" stroke-width="3" /><rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="6.8s" begin="2.5s" repeatCount="indefinite" /></g>
+                            <g class="candle c13"><line x1="480" y1="460" x2="480" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="472" y="405" width="16" height="48" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -14; 0 0; 0 9; 0 0" dur="8.2s" begin="4.7s" repeatCount="indefinite" /></g>
+                            <g class="candle c14"><line x1="510" y1="430" x2="510" y2="360" stroke="#0a8f3d" stroke-width="3" /><rect x="502" y="385" width="16" height="40" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.4s" begin="3.3s" repeatCount="indefinite" /></g>
+                            <g class="candle c15"><line x1="540" y1="420" x2="540" y2="350" stroke="#c01818" stroke-width="3" /><rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.0s" begin="2.6s" repeatCount="indefinite" /></g>
+                            <g class="candle c16"><line x1="570" y1="410" x2="570" y2="340" stroke="#c01818" stroke-width="3" /><rect x="562" y="360" width="16" height="44" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.4s" begin="4.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c17"><line x1="610" y1="450" x2="610" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.1s" begin="1.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c18"><line x1="640" y1="480" x2="640" y2="410" stroke="#c01818" stroke-width="3" /><rect x="632" y="430" width="16" height="36" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.2s" begin="3.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c19"><line x1="670" y1="500" x2="670" y2="430" stroke="#0a8f3d" stroke-width="3" /><rect x="662" y="455" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.0s" begin="2.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c20"><line x1="700" y1="520" x2="700" y2="450" stroke="#c01818" stroke-width="3" /><rect x="692" y="470" width="16" height="36" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.0s" begin="4.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c21"><line x1="730" y1="540" x2="730" y2="470" stroke="#0a8f3d" stroke-width="3" /><rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" begin="3.7s" repeatCount="indefinite" /></g>
+                            <g class="candle c22"><line x1="760" y1="560" x2="760" y2="500" stroke="#c01818" stroke-width="3" /><rect x="752" y="520" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.8s" begin="1.6s" repeatCount="indefinite" /></g>
+                            <g class="candle c23"><line x1="800" y1="560" x2="800" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.5s" begin="2.8s" repeatCount="indefinite" /></g>
+                            <g class="candle c24"><line x1="830" y1="570" x2="830" y2="520" stroke="#c01818" stroke-width="3" /><rect x="822" y="535" width="16" height="26" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="5.9s" begin="4.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c25"><line x1="860" y1="555" x2="860" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="852" y="525" width="16" height="24" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.5s" begin="3.0s" repeatCount="indefinite" /></g>
+                            <g class="candle c26"><line x1="890" y1="565" x2="890" y2="520" stroke="#c01818" stroke-width="3" /><rect x="882" y="535" width="16" height="24" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.7s" begin="1.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c27"><line x1="920" y1="550" x2="920" y2="505" stroke="#0a8f3d" stroke-width="3" /><rect x="912" y="520" width="16" height="26" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.2s" begin="2.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c28"><line x1="950" y1="560" x2="950" y2="515" stroke="#c01818" stroke-width="3" /><rect x="942" y="530" width="16" height="24" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.4s" begin="4.5s" repeatCount="indefinite" /></g>
+                            <!-- Removed last 3 candles (c29,c30,c31) -->
+                        </g>
+                        <g class="mainSet" transform="translate(1040,0) scale(1.207,1)">
+                            <!-- duplicate for wrap with tall first candle -->
+                            <g class="candle c0"><line x1="70"  y1="700" x2="70"  y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="62"  y="560" width="16" height="140" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c1"><line x1="100" y1="680" x2="100" y2="620" stroke="#c01818" stroke-width="3" /><rect x="92"  y="640" width="16" height="40" fill="#c01818" rx="3" /></g>
+                            <g class="candle c2"><line x1="130" y1="690" x2="130" y2="630" stroke="#0a8f3d" stroke-width="3" /><rect x="122" y="650" width="16" height="36" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c3"><line x1="160" y1="700" x2="160" y2="640" stroke="#c01818" stroke-width="3" /><rect x="152" y="660" width="16" height="42" fill="#c01818" rx="3" /></g>
+                            <g class="candle c4"><line x1="190" y1="670" x2="190" y2="610" stroke="#0a8f3d" stroke-width="3" /><rect x="182" y="630" width="16" height="34" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c5"><line x1="220" y1="660" x2="220" y2="600" stroke="#c01818" stroke-width="3" /><rect x="212" y="620" width="16" height="32" fill="#c01818" rx="3" /></g>
+                            <g class="candle c6"><line x1="260" y1="640" x2="260" y2="560" stroke="#0a8f3d" stroke-width="3" /><rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c7"><line x1="290" y1="620" x2="290" y2="540" stroke="#0a8f3d" stroke-width="3" /><rect x="282" y="565" width="16" height="50" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c8"><line x1="320" y1="600" x2="320" y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="312" y="545" width="16" height="46" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c9"><line x1="350" y1="560" x2="350" y2="500" stroke="#c01818" stroke-width="3" /><rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" /></g>
+                            <g class="candle c10"><line x1="380" y1="520" x2="380" y2="460" stroke="#0a8f3d" stroke-width="3" /><rect x="372" y="478" width="16" height="34" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c11"><line x1="410" y1="500" x2="410" y2="440" stroke="#c01818" stroke-width="3" /><rect x="402" y="460" width="16" height="30" fill="#c01818" rx="3" /></g>
+                            <g class="candle c12"><line x1="450" y1="480" x2="450" y2="400" stroke="#0a8f3d" stroke-width="3" /><rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c13"><line x1="480" y1="460" x2="480" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="472" y="405" width="16" height="48" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c14"><line x1="510" y1="430" x2="510" y2="360" stroke="#0a8f3d" stroke-width="3" /><rect x="502" y="385" width="16" height="40" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c15"><line x1="540" y1="420" x2="540" y2="350" stroke="#c01818" stroke-width="3" /><rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" /></g>
+                            <g class="candle c16"><line x1="570" y1="410" x2="570" y2="340" stroke="#c01818" stroke-width="3" /><rect x="562" y="360" width="16" height="44" fill="#c01818" rx="3" /></g>
+                            <g class="candle c17"><line x1="610" y1="450" x2="610" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c18"><line x1="640" y1="480" x2="640" y2="410" stroke="#c01818" stroke-width="3" /><rect x="632" y="430" width="16" height="36" fill="#c01818" rx="3" /></g>
+                            <g class="candle c19"><line x1="670" y1="500" x2="670" y2="430" stroke="#0a8f3d" stroke-width="3" /><rect x="662" y="455" width="16" height="38" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c20"><line x1="700" y1="520" x2="700" y2="450" stroke="#c01818" stroke-width="3" /><rect x="692" y="470" width="16" height="36" fill="#c01818" rx="3" /></g>
+                            <g class="candle c21"><line x1="730" y1="540" x2="730" y2="470" stroke="#0a8f3d" stroke-width="3" /><rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c22"><line x1="760" y1="560" x2="760" y2="500" stroke="#c01818" stroke-width="3" /><rect x="752" y="520" width="16" height="32" fill="#c01818" rx="3" /></g>
+                            <g class="candle c23"><line x1="800" y1="560" x2="800" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c24"><line x1="830" y1="570" x2="830" y2="520" stroke="#c01818" stroke-width="3" /><rect x="822" y="535" width="16" height="26" fill="#c01818" rx="3" /></g>
+                            <g class="candle c25"><line x1="860" y1="555" x2="860" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="852" y="525" width="16" height="24" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c26"><line x1="890" y1="565" x2="890" y2="520" stroke="#c01818" stroke-width="3" /><rect x="882" y="535" width="16" height="24" fill="#c01818" rx="3" /></g>
+                            <g class="candle c27"><line x1="920" y1="550" x2="920" y2="505" stroke="#0a8f3d" stroke-width="3" /><rect x="912" y="520" width="16" height="26" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c28"><line x1="950" y1="560" x2="950" y2="515" stroke="#c01818" stroke-width="3" /><rect x="942" y="530" width="16" height="24" fill="#c01818" rx="3" /></g>
+                            <!-- Removed last 3 candles (c29,c30,c31) duplicate set -->
+                        </g>
+                        <g class="mainSet" transform="translate(1040,0) scale(1.207,1)">
+                            <!-- duplicate for wrap with bobbing animation -->
+                            <g class="candle c0"><line x1="70"  y1="700" x2="70"  y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="62"  y="560" width="16" height="140" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c1"><line x1="100" y1="680" x2="100" y2="620" stroke="#c01818" stroke-width="3" /><rect x="92"  y="640" width="16" height="40" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.5s" begin="1.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c2"><line x1="130" y1="690" x2="130" y2="630" stroke="#0a8f3d" stroke-width="3" /><rect x="122" y="650" width="16" height="36" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 1; 0 -10; 0 1; 0 7; 0 1" dur="6.2s" begin="2.3s" repeatCount="indefinite" /></g>
+                            <g class="candle c3"><line x1="160" y1="700" x2="160" y2="640" stroke="#c01818" stroke-width="3" /><rect x="152" y="660" width="16" height="42" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -13; 0 0; 0 9; 0 0" dur="7.8s" begin="3.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c4"><line x1="190" y1="670" x2="190" y2="610" stroke="#0a8f3d" stroke-width="3" /><rect x="182" y="630" width="16" height="34" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.7s" begin="0.8s" repeatCount="indefinite" /></g>
+                            <g class="candle c5"><line x1="220" y1="660" x2="220" y2="600" stroke="#c01818" stroke-width="3" /><rect x="212" y="620" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.8s" begin="4.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c6"><line x1="260" y1="640" x2="260" y2="560" stroke="#0a8f3d" stroke-width="3" /><rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.3s" begin="2.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c7"><line x1="290" y1="620" x2="290" y2="540" stroke="#0a8f3d" stroke-width="3" /><rect x="282" y="565" width="16" height="50" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.3s" begin="1.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c8"><line x1="320" y1="600" x2="320" y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="312" y="545" width="16" height="46" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="10.8s" begin="3.6s" repeatCount="indefinite" /></g>
+                            <g class="candle c9"><line x1="350" y1="560" x2="350" y2="500" stroke="#c01818" stroke-width="3" /><rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0; 0 3; 0 0" dur="8.6s" begin="2.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c10"><line x1="380" y1="520" x2="380" y2="460" stroke="#0a8f3d" stroke-width="3" /><rect x="372" y="478" width="16" height="34" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.2s" begin="1.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c11"><line x1="410" y1="500" x2="410" y2="440" stroke="#c01818" stroke-width="3" /><rect x="402" y="460" width="16" height="30" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="11s" begin="3.8s" repeatCount="indefinite" /></g>
+                            <g class="candle c12"><line x1="450" y1="480" x2="450" y2="400" stroke="#0a8f3d" stroke-width="3" /><rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="10.4s" begin="2.5s" repeatCount="indefinite" /></g>
+                            <g class="candle c13"><line x1="480" y1="460" x2="480" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="472" y="405" width="16" height="48" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -7; 0 0; 0 5; 0 0" dur="12.6s" begin="4.7s" repeatCount="indefinite" /></g>
+                            <g class="candle c14"><line x1="510" y1="430" x2="510" y2="360" stroke="#0a8f3d" stroke-width="3" /><rect x="502" y="385" width="16" height="40" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.9s" begin="3.3s" repeatCount="indefinite" /></g>
+                            <g class="candle c15"><line x1="540" y1="420" x2="540" y2="350" stroke="#c01818" stroke-width="3" /><rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="10.7s" begin="2.6s" repeatCount="indefinite" /></g>
+                            <g class="candle c16"><line x1="570" y1="410" x2="570" y2="340" stroke="#c01818" stroke-width="3" /><rect x="562" y="360" width="16" height="44" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="11.4s" begin="4.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c17"><line x1="610" y1="450" x2="610" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.4s" begin="1.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c18"><line x1="640" y1="480" x2="640" y2="410" stroke="#c01818" stroke-width="3" /><rect x="632" y="430" width="16" height="36" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.6s" begin="3.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c19"><line x1="670" y1="500" x2="670" y2="430" stroke="#0a8f3d" stroke-width="3" /><rect x="662" y="455" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="10.8s" begin="2.1s" repeatCount="indefinite" /></g>
+                            <g class="candle c20"><line x1="700" y1="520" x2="700" y2="450" stroke="#c01818" stroke-width="3" /><rect x="692" y="470" width="16" height="36" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.3s" begin="4.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c21"><line x1="730" y1="540" x2="730" y2="470" stroke="#0a8f3d" stroke-width="3" /><rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0; 0 5; 0 0" dur="11.1s" begin="3.7s" repeatCount="indefinite" /></g>
+                            <g class="candle c22"><line x1="760" y1="560" x2="760" y2="500" stroke="#c01818" stroke-width="3" /><rect x="752" y="520" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0; 0 3; 0 0" dur="8.9s" begin="1.6s" repeatCount="indefinite" /></g>
+                            <g class="candle c23"><line x1="800" y1="560" x2="800" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0; 0 3; 0 0" dur="8.5s" begin="2.8s" repeatCount="indefinite" /></g>
+                            <g class="candle c24"><line x1="830" y1="570" x2="830" y2="520" stroke="#c01818" stroke-width="3" /><rect x="822" y="535" width="16" height="26" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.1s" begin="4.2s" repeatCount="indefinite" /></g>
+                            <g class="candle c25"><line x1="860" y1="555" x2="860" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="852" y="525" width="16" height="24" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0; 0 3; 0 0" dur="8.4s" begin="3.0s" repeatCount="indefinite" /></g>
+                            <g class="candle c26"><line x1="890" y1="565" x2="890" y2="520" stroke="#c01818" stroke-width="3" /><rect x="882" y="535" width="16" height="24" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0; 0 3; 0 0" dur="8.7s" begin="1.9s" repeatCount="indefinite" /></g>
+                            <g class="candle c27"><line x1="920" y1="550" x2="920" y2="505" stroke="#0a8f3d" stroke-width="3" /><rect x="912" y="520" width="16" height="26" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 4; 0 0" dur="9.6s" begin="2.4s" repeatCount="indefinite" /></g>
+                            <g class="candle c28"><line x1="950" y1="560" x2="950" y2="515" stroke="#c01818" stroke-width="3" /><rect x="942" y="530" width="16" height="24" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0; 0 3; 0 0" dur="8.3s" begin="4.5s" repeatCount="indefinite" /></g>
+                            <g class="candle c29"><line x1="980" y1="575" x2="980" y2="525" stroke="#c01818" stroke-width="3" /><rect x="972" y="545" width="16" height="28" fill="#c01818" rx="3" /></g>
+                            <g class="candle c30"><line x1="1010" y1="565" x2="1010" y2="515" stroke="#0a8f3d" stroke-width="3" /><rect x="1002" y="535" width="16" height="26" fill="#0a8f3d" rx="3" /></g>
+                            <g class="candle c31"><line x1="1040" y1="580" x2="1040" y2="530" stroke="#c01818" stroke-width="3" /><rect x="1032" y="550" width="16" height="28" fill="#c01818" rx="3" /></g>
+                        </g>
+                        <animateTransform attributeName="transform" type="translate" from="0 0" to="-1040 0" dur="42s" repeatCount="indefinite" />
+                    </g>
+                </g>
+                <!-- PARTICLES & STYLE -->
+                <style>
+                    #layerMain .candle rect { animation: wave 6s ease-in-out infinite; transform-origin: 50% 50%; }
+                    #layerMain .candle:nth-child(4n) rect { animation-delay: 1.2s; }
+                    #layerMain .candle:nth-child(5n) rect { animation-delay: 2.4s; }
+                    #layerMain .candle:nth-child(7n) rect { animation-delay: 3.6s; }
+                    @keyframes wave {0%{opacity:.9;transform:scaleY(1);}30%{opacity:1;transform:scaleY(1.08);}55%{opacity:.75;transform:scaleY(.92);}80%{opacity:.95;transform:scaleY(1.04);}100%{opacity:.9;transform:scaleY(1);} }
+                    #layerMain .candle line { animation: flicker 5.5s linear infinite; }
+                    #layerMain .candle:nth-child(3n) line { animation-delay:1.5s; }
+                    @keyframes flicker {0%,100%{stroke-opacity:.8;}40%{stroke-opacity:1;}60%{stroke-opacity:.5;} }
+                    .spark { animation: rise 7s ease-in infinite; }
+                    .spark:nth-child(odd){ animation-duration:5.3s; }
+                    @keyframes rise {0%{opacity:0;transform:translateY(0) scale(.4);}10%{opacity:.55;}50%{opacity:.35;transform:translateY(-70px) scale(.65);}85%{opacity:0;transform:translateY(-130px) scale(.2);}100%{opacity:0;} }
+                </style>
+                <g id="particles" opacity="0.3">
+                    <circle class="spark" cx="180" cy="640" r="3" fill="#c01818" />
+                    <circle class="spark" cx="300" cy="560" r="2" fill="#0a8f3d" />
+                    <circle class="spark" cx="460" cy="470" r="3" fill="#0a8f3d" />
+                    <circle class="spark" cx="520" cy="430" r="2" fill="#c01818" />
+                    <circle class="spark" cx="610" cy="440" r="3" fill="#0a8f3d" />
+                    <circle class="spark" cx="700" cy="500" r="2" fill="#c01818" />
+                    <circle class="spark" cx="830" cy="540" r="3" fill="#c01818" />
+                    <circle class="spark" cx="950" cy="550" r="2" fill="#0a8f3d" />
+                </g>
+            </svg>
+        </div>
     <!-- Removed video for beige background -->
 
     <header class="top-nav" role="navigation" aria-label="Primary">
@@ -1034,27 +1274,27 @@
     </header>
 
     <div id="best-score" class="highscore-top">Highscore: <strong id="best-score-value">0</strong></div>
-    <!-- hero card: centered, stops 100px from top/bottom -->
-    <div class="hero-card" role="region" aria-label="Start">
+    <!-- Content previously inside hero-card -->
+    <div role="region" aria-label="Start">
         <div class="title-stack">
-        <h1 class="title-main">
+        <h1 class="title-main" style="margin-bottom:32px;">
             <span class="higher">HIGHER</span>
-            <span class="or"> OR </span>
+            <span class="or" style="margin:0 18px;"> OR </span>
             <span class="lower">LOWER</span>
         </h1>
-        <div class="title-sub">MARKET CAP</div>
-                <div style="color:#fff; text-align:center; margin:24px 0 8px 0; font-size:1.15rem; font-weight:400;">
-                    <span style="color:#fff;">All stats are based on the market capitalization of the companies.</span><br>
-                    <span style="display:block; margin-top:6px; font-size:1rem; color:#fff;">Updated November 2025</span>
-                </div>
+        <div class="title-sub" style="margin-bottom:32px;">MARKET CAP</div>
+        <div style="color:#fff; text-align:center; margin:32px 0 24px 0; font-size:1.15rem; font-weight:400; opacity:1;">
+            <span style="color:#fff; display:block; margin-bottom:18px;">All stats are based on the market capitalization of the companies.</span>
+            <span style="display:block; margin-top:18px; font-size:1rem; color:#fff;">Updated November 2025</span>
+        </div>
         </div>
 
         <div class="start-controls">
-        <button id="start-button" class="pill-btn" onclick="hideInfoPopup(); showScreen('play-screen'); startGame()">Start Game</button>
+        <button id="start-button" class="pill-btn" style="margin:32px 0; position:relative; z-index:3;" onclick="hideInfoPopup(); showScreen('play-screen'); startGame()">Start Game</button>
         </div>
 
         <div class="categories-bar" aria-hidden="true">
-            <h4 style="color:#fff;">Categories (Coming Soon!)</h4>
+            <h4 style="color:#fff; margin:32px 0 18px 0;">Categories (Coming Soon!)</h4>
         <div class="category-buttons">
             <button class="btn btn-light" disabled>📈 Company Stocks</button>
             <button class="btn btn-light" disabled>💰 Company Revenue</button>
@@ -1128,85 +1368,117 @@
                     <stop offset="100%" stop-color="#bfa36b" />
                 </linearGradient>
             </defs>
-            <g opacity="0.18">
-                <path d="M0,180 Q220,80 320,180 T520,180 T720,280 T920,180 T1120,230 T1440,180" stroke="#ffffff" stroke-opacity="0.55" stroke-width="15" fill="none">
-                    <animate attributeName="d" dur="7s" repeatCount="indefinite" values="M0,180 Q220,80 320,180 T520,180 T720,280 T920,180 T1120,230 T1440,180;M0,200 Q220,100 320,200 T520,200 T720,300 T920,200 T1120,250 T1440,200;M0,180 Q220,80 320,180 T520,180 T720,280 T920,180 T1120,230 T1440,180"/>
-                </path>
-                <path d="M0,760 Q280,960 480,760 T880,960 T1440,760" stroke="#ffffff" stroke-opacity="0.55" stroke-width="11" fill="none">
-                    <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0,760 Q280,960 480,760 T880,960 T1440,760;M0,780 Q280,980 480,780 T880,980 T1440,780;M0,760 Q280,960 480,760 T880,960 T1440,760"/>
-                </path>
-                <path d="M0,420 Q580,620 780,420 T1440,620" stroke="#f8f8f8" stroke-opacity="0.6" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="7.5s" repeatCount="indefinite" values="M0,420 Q580,620 780,420 T1440,620;M0,440 Q580,640 780,440 T1440,640;M0,420 Q580,620 780,420 T1440,620"/>
-                </path>
-                <path d="M0,300 Q400,500 600,300 T1000,500 T1440,300" stroke="#ffffff" stroke-opacity="0.5" stroke-width="7" fill="none">
-                    <animate attributeName="d" dur="8.5s" repeatCount="indefinite" values="M0,300 Q400,500 600,300 T1000,500 T1440,300;M0,320 Q400,520 600,320 T1000,520 T1440,320;M0,300 Q400,500 600,300 T1000,500 T1440,300"/>
-                </path>
-                <path d="M0,100 Q800,300 1000,100 T1440,300" stroke="#f8f8f8" stroke-opacity="0.58" stroke-width="6" fill="none">
-                    <animate attributeName="d" dur="6.5s" repeatCount="indefinite" values="M0,100 Q800,300 1000,100 T1440,300;M0,120 Q800,320 1000,120 T1440,320;M0,100 Q800,300 1000,100 T1440,300"/>
-                </path>
-                <path d="M0,850 Q400,650 600,850 T1000,850 T1440,850" stroke="#ffffff" stroke-opacity="0.55" stroke-width="9" fill="none">
-                    <animate attributeName="d" dur="9s" repeatCount="indefinite" values="M0,850 Q400,650 600,850 T1000,850 T1440,850;M0,870 Q400,670 600,870 T1000,670 T1440,870;M0,850 Q400,650 600,850 T1000,850 T1440,850"/>
-                </path>
-                <path d="M0,500 Q300,300 500,500 T900,300 T1440,500" stroke="#f8f8f8" stroke-opacity="0.6" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="7.5s" repeatCount="indefinite" values="M0,500 Q300,300 500,500 T900,300 T1440,500;M0,520 Q300,320 500,520 T900,320 T1440,520;M0,500 Q300,300 500,500 T900,300 T1440,500"/>
-                </path>
-                <path d="M0,700 Q600,900 800,700 T1440,900" stroke="#ffffff" stroke-opacity="0.5" stroke-width="7" fill="none">
-                    <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0,700 Q600,900 800,700 T1440,900;M0,720 Q600,920 800,720 T1440,920;M0,700 Q600,900 800,700 T1440,900"/>
-                </path>
-                <path d="M0,100 Q1200,300 1440,100" stroke="#f8f8f8" stroke-opacity="0.58" stroke-width="6" fill="none">
-                    <animate attributeName="d" dur="7s" repeatCount="indefinite" values="M0,100 Q1200,300 1440,100;M0,120 Q1200,320 1440,120;M0,100 Q1200,300 1440,100"/>
-                </path>
-                <path d="M0,850 Q500,650 700,850 T1100,650 T1440,850" stroke="#ffffff" stroke-opacity="0.55" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="8.5s" repeatCount="indefinite" values="M0,850 Q500,650 700,850 T1100,650 T1440,850;M0,870 Q500,670 700,870 T1100,670 T1440,870;M0,850 Q500,650 700,850 T1100,650 T1440,850"/>
-                </path>
-                <path d="M0,100 Q400,300 600,100 T1000,300 T1440,100" stroke="#f8f8f8" stroke-opacity="0.58" stroke-width="7" fill="none">
-                    <animate attributeName="d" dur="6.5s" repeatCount="indefinite" values="M0,100 Q400,300 600,100 T1000,300 T1440,100;M0,120 Q400,320 600,120 T1000,320 T1440,120;M0,100 Q400,300 600,100 T1000,300 T1440,100"/>
-                </path>
-                <path d="M0,850 Q800,650 1000,850 T1440,650" stroke="#ffffff" stroke-opacity="0.55" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0,850 Q800,650 1000,850 T1440,650;M0,870 Q800,670 1000,870 T1440,670;M0,850 Q800,650 1000,850 T1440,650"/>
-                </path>
-                <path d="M0,300 Q300,500 500,300 T900,500 T1440,300" stroke="#f8f8f8" stroke-opacity="0.6" stroke-width="7" fill="none">
-                    <animate attributeName="d" dur="7.5s" repeatCount="indefinite" values="M0,300 Q300,500 500,300 T900,500 T1440,300;M0,320 Q300,520 500,320 T900,520 T1440,320;M0,300 Q300,500 500,300 T900,500 T1440,300"/>
-                </path>
-                <path d="M0,100 Q600,300 800,100 T1440,300" stroke="#ffffff" stroke-opacity="0.5" stroke-width="6" fill="none">
-                    <animate attributeName="d" dur="7s" repeatCount="indefinite" values="M0,100 Q600,300 800,100 T1440,300;M0,120 Q600,320 800,120 T1440,320;M0,100 Q600,300 800,100 T1440,300"/>
-                </path>
-                <path d="M0,850 Q1200,650 1440,850" stroke="#f8f8f8" stroke-opacity="0.58" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="8.5s" repeatCount="indefinite" values="M0,850 Q1200,650 1440,850;M0,870 Q1200,670 1440,870;M0,850 Q1200,650 1440,850"/>
-                </path>
-                <path d="M0,600 Q400,800 600,600 T1000,800 T1440,600" stroke="#ffffff" stroke-opacity="0.5" stroke-width="7" fill="none">
-                    <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0,600 Q400,800 600,600 T1000,800 T1440,600;M0,620 Q400,820 600,620 T1000,820 T1440,620;M0,600 Q400,800 600,600 T1000,800 T1440,600"/>
-                </path>
-                <path d="M0,400 Q800,600 1000,400 T1440,600" stroke="#f8f8f8" stroke-opacity="0.6" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="7.5s" repeatCount="indefinite" values="M0,400 Q800,600 1000,400 T1440,600;M0,420 Q800,620 1000,420 T1440,620;M0,400 Q800,600 1000,400 T1440,600"/>
-                </path>
-                <path d="M0,700 Q300,900 500,700 T900,900 T1440,700" stroke="#ffffff" stroke-opacity="0.5" stroke-width="7" fill="none">
-                    <animate attributeName="d" dur="8s" repeatCount="indefinite" values="M0,700 Q300,900 500,700 T900,900 T1440,700;M0,720 Q300,920 500,720 T900,920 T1440,720;M0,700 Q300,900 500,700 T900,900 T1440,700"/>
-                </path>
-                <path d="M0,900 Q600,700 800,900 T1440,700" stroke="#f8f8f8" stroke-opacity="0.58" stroke-width="8" fill="none">
-                    <animate attributeName="d" dur="8.5s" repeatCount="indefinite" values="M0,900 Q600,700 800,900 T1440,700;M0,920 Q600,720 800,920 T1440,720;M0,900 Q600,700 800,900 T1440,700"/>
-                </path>
-                <!-- Circles remain static -->
-                <circle cx="300" cy="600" r="40" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="900" cy="300" r="30" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="1200" cy="500" r="50" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="700" cy="800" r="25" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="500" cy="200" r="22" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="1100" cy="700" r="35" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="200" cy="400" r="18" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="1300" cy="200" r="28" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="400" cy="100" r="20" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="800" cy="500" r="24" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="1000" cy="800" r="32" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="600" cy="300" r="16" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="1200" cy="200" r="26" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="200" cy="700" r="18" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="1300" cy="800" r="28" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="400" cy="600" r="20" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="800" cy="100" r="24" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="1000" cy="300" r="32" fill="#f8f8f8" fill-opacity="0.6" />
-                <circle cx="600" cy="700" r="16" fill="#ffffff" fill-opacity="0.55" />
-                <circle cx="1200" cy="900" r="26" fill="#f8f8f8" fill-opacity="0.6" />
+            <!-- Decorative lines and circles removed as requested -->
+        </svg>
+    </div>
+    <!-- Candlestick chart duplicated for end screen -->
+    <div id="candlestick-bg-end" style="position:fixed; inset:0; z-index:2; pointer-events:none;">
+        <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+            <defs>
+                <filter id="glowEnd" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="bEnd" />
+                    <feColorMatrix in="bEnd" type="matrix" values="0 0 0 0 0  0 0 0 0 0.5  0 0 0 0 0.25  0 0 0 0.35 0" />
+                </filter>
+            </defs>
+            <g id="candleSceneEnd" opacity="0.22" clip-path="url(#clipSceneEnd)">
+                <defs>
+                    <clipPath id="clipSceneEnd"><rect x="0" y="0" width="1200" height="800" /></clipPath>
+                </defs>
+                <g id="backScrollEnd" filter="url(#glowEnd)" opacity="0.32">
+                    <g class="backSet" transform="translate(-62,8) scale(1.207,1)">
+                        <rect x="62" y="560" width="16" height="140" fill="#0a8f3d" rx="3" />
+                        <rect x="92" y="640" width="16" height="40" fill="#c01818" rx="3" />
+                        <rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" />
+                        <rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" />
+                        <rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" />
+                        <rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" />
+                        <rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" />
+                        <rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" />
+                        <rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" />
+                        <rect x="972" y="545" width="16" height="28" fill="#c01818" rx="3" />
+                    </g>
+                    <g class="backSet" transform="translate(1040,8) scale(1.207,1)">
+                        <rect x="62" y="560" width="16" height="140" fill="#0a8f3d" rx="3" />
+                        <rect x="92" y="640" width="16" height="40" fill="#c01818" rx="3" />
+                        <rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" />
+                        <rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" />
+                        <rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" />
+                        <rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" />
+                        <rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" />
+                        <rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" />
+                        <rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" />
+                        <rect x="972" y="545" width="16" height="28" fill="#c01818" rx="3" />
+                    </g>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="-1040 0" dur="65s" repeatCount="indefinite" />
+                </g>
+                <g id="mainScrollEnd" stroke-linecap="round">
+                    <g class="mainSet" transform="translate(-62,0) scale(1.207,1)">
+                        <g class="candle c0"><line x1="70"  y1="700" x2="70"  y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="62"  y="560" width="16" height="140" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" repeatCount="indefinite" /></g>
+                        <g class="candle c1"><line x1="100" y1="680" x2="100" y2="620" stroke="#c01818" stroke-width="3" /><rect x="92"  y="640" width="16" height="40" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.5s" begin="1.2s" repeatCount="indefinite" /></g>
+                        <g class="candle c2"><line x1="130" y1="690" x2="130" y2="630" stroke="#0a8f3d" stroke-width="3" /><rect x="122" y="650" width="16" height="36" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 1; 0 -10; 0 1; 0 7; 0 1" dur="6.2s" begin="2.3s" repeatCount="indefinite" /></g>
+                        <g class="candle c3"><line x1="160" y1="700" x2="160" y2="640" stroke="#c01818" stroke-width="3" /><rect x="152" y="660" width="16" height="42" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -13; 0 0; 0 9; 0 0" dur="7.8s" begin="3.1s" repeatCount="indefinite" /></g>
+                        <g class="candle c4"><line x1="190" y1="670" x2="190" y2="610" stroke="#0a8f3d" stroke-width="3" /><rect x="182" y="630" width="16" height="34" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.7s" begin="0.8s" repeatCount="indefinite" /></g>
+                        <g class="candle c5"><line x1="220" y1="660" x2="220" y2="600" stroke="#c01818" stroke-width="3" /><rect x="212" y="620" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.8s" begin="4.4s" repeatCount="indefinite" /></g>
+                        <g class="candle c6"><line x1="260" y1="640" x2="260" y2="560" stroke="#0a8f3d" stroke-width="3" /><rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.3s" begin="2.9s" repeatCount="indefinite" /></g>
+                        <g class="candle c7"><line x1="290" y1="620" x2="290" y2="540" stroke="#0a8f3d" stroke-width="3" /><rect x="282" y="565" width="16" height="50" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.3s" begin="1.9s" repeatCount="indefinite" /></g>
+                        <g class="candle c8"><line x1="320" y1="600" x2="320" y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="312" y="545" width="16" height="46" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.0s" begin="3.6s" repeatCount="indefinite" /></g>
+                        <g class="candle c9"><line x1="350" y1="560" x2="350" y2="500" stroke="#c01818" stroke-width="3" /><rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.6s" begin="2.2s" repeatCount="indefinite" /></g>
+                        <g class="candle c10"><line x1="380" y1="520" x2="380" y2="460" stroke="#0a8f3d" stroke-width="3" /><rect x="372" y="478" width="16" height="34" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.0s" begin="1.1s" repeatCount="indefinite" /></g>
+                        <g class="candle c11"><line x1="410" y1="500" x2="410" y2="440" stroke="#c01818" stroke-width="3" /><rect x="402" y="460" width="16" height="30" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" begin="3.8s" repeatCount="indefinite" /></g>
+                        <g class="candle c12"><line x1="450" y1="480" x2="450" y2="400" stroke="#0a8f3d" stroke-width="3" /><rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="6.8s" begin="2.5s" repeatCount="indefinite" /></g>
+                        <g class="candle c13"><line x1="480" y1="460" x2="480" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="472" y="405" width="16" height="48" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -14; 0 0; 0 9; 0 0" dur="8.2s" begin="4.7s" repeatCount="indefinite" /></g>
+                        <g class="candle c14"><line x1="510" y1="430" x2="510" y2="360" stroke="#0a8f3d" stroke-width="3" /><rect x="502" y="385" width="16" height="40" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.4s" begin="3.3s" repeatCount="indefinite" /></g>
+                        <g class="candle c15"><line x1="540" y1="420" x2="540" y2="350" stroke="#c01818" stroke-width="3" /><rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.0s" begin="2.6s" repeatCount="indefinite" /></g>
+                        <g class="candle c16"><line x1="570" y1="410" x2="570" y2="340" stroke="#c01818" stroke-width="3" /><rect x="562" y="360" width="16" height="44" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.4s" begin="4.1s" repeatCount="indefinite" /></g>
+                        <g class="candle c17"><line x1="610" y1="450" x2="610" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.1s" begin="1.4s" repeatCount="indefinite" /></g>
+                        <g class="candle c18"><line x1="640" y1="480" x2="640" y2="410" stroke="#c01818" stroke-width="3" /><rect x="632" y="430" width="16" height="36" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -11; 0 0; 0 8; 0 0" dur="6.2s" begin="3.4s" repeatCount="indefinite" /></g>
+                        <g class="candle c19"><line x1="670" y1="500" x2="670" y2="430" stroke="#0a8f3d" stroke-width="3" /><rect x="662" y="455" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.0s" begin="2.1s" repeatCount="indefinite" /></g>
+                        <g class="candle c20"><line x1="700" y1="520" x2="700" y2="450" stroke="#c01818" stroke-width="3" /><rect x="692" y="470" width="16" height="36" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.0s" begin="4.9s" repeatCount="indefinite" /></g>
+                        <g class="candle c21"><line x1="730" y1="540" x2="730" y2="470" stroke="#0a8f3d" stroke-width="3" /><rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -12; 0 0; 0 8; 0 0" dur="7.2s" begin="3.7s" repeatCount="indefinite" /></g>
+                        <g class="candle c22"><line x1="760" y1="560" x2="760" y2="500" stroke="#c01818" stroke-width="3" /><rect x="752" y="520" width="16" height="32" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.8s" begin="1.6s" repeatCount="indefinite" /></g>
+                        <g class="candle c23"><line x1="800" y1="560" x2="800" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.5s" begin="2.8s" repeatCount="indefinite" /></g>
+                        <g class="candle c24"><line x1="830" y1="570" x2="830" y2="520" stroke="#c01818" stroke-width="3" /><rect x="822" y="535" width="16" height="26" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="5.9s" begin="4.2s" repeatCount="indefinite" /></g>
+                        <g class="candle c25"><line x1="860" y1="555" x2="860" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="852" y="525" width="16" height="24" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.5s" begin="3.0s" repeatCount="indefinite" /></g>
+                        <g class="candle c26"><line x1="890" y1="565" x2="890" y2="520" stroke="#c01818" stroke-width="3" /><rect x="882" y="535" width="16" height="24" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.7s" begin="1.9s" repeatCount="indefinite" /></g>
+                        <g class="candle c27"><line x1="920" y1="550" x2="920" y2="505" stroke="#0a8f3d" stroke-width="3" /><rect x="912" y="520" width="16" height="26" fill="#0a8f3d" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0; 0 7; 0 0" dur="6.2s" begin="2.4s" repeatCount="indefinite" /></g>
+                        <g class="candle c28"><line x1="950" y1="560" x2="950" y2="515" stroke="#c01818" stroke-width="3" /><rect x="942" y="530" width="16" height="24" fill="#c01818" rx="3" /><animateTransform attributeName="transform" type="translate" values="0 0; 0 -9; 0 0; 0 7; 0 0" dur="5.4s" begin="4.5s" repeatCount="indefinite" /></g>
+                        <!-- Removed last 3 candles (c29,c30,c31) to stay consistent -->
+                    </g>
+                    <!-- Duplicate front candle set for seamless wrap -->
+                    <g class="mainSet" transform="translate(1040,0) scale(1.207,1)">
+                        <g class="candle c0"><line x1="70"  y1="700" x2="70"  y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="62"  y="560" width="16" height="140" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c1"><line x1="100" y1="680" x2="100" y2="620" stroke="#c01818" stroke-width="3" /><rect x="92"  y="640" width="16" height="40" fill="#c01818" rx="3" /></g>
+                        <g class="candle c2"><line x1="130" y1="690" x2="130" y2="630" stroke="#0a8f3d" stroke-width="3" /><rect x="122" y="650" width="16" height="36" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c3"><line x1="160" y1="700" x2="160" y2="640" stroke="#c01818" stroke-width="3" /><rect x="152" y="660" width="16" height="42" fill="#c01818" rx="3" /></g>
+                        <g class="candle c4"><line x1="190" y1="670" x2="190" y2="610" stroke="#0a8f3d" stroke-width="3" /><rect x="182" y="630" width="16" height="34" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c5"><line x1="220" y1="660" x2="220" y2="600" stroke="#c01818" stroke-width="3" /><rect x="212" y="620" width="16" height="32" fill="#c01818" rx="3" /></g>
+                        <g class="candle c6"><line x1="260" y1="640" x2="260" y2="560" stroke="#0a8f3d" stroke-width="3" /><rect x="252" y="590" width="16" height="48" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c7"><line x1="290" y1="620" x2="290" y2="540" stroke="#0a8f3d" stroke-width="3" /><rect x="282" y="565" width="16" height="50" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c8"><line x1="320" y1="600" x2="320" y2="520" stroke="#0a8f3d" stroke-width="3" /><rect x="312" y="545" width="16" height="46" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c9"><line x1="350" y1="560" x2="350" y2="500" stroke="#c01818" stroke-width="3" /><rect x="342" y="520" width="16" height="32" fill="#c01818" rx="3" /></g>
+                        <g class="candle c10"><line x1="380" y1="520" x2="380" y2="460" stroke="#0a8f3d" stroke-width="3" /><rect x="372" y="478" width="16" height="34" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c11"><line x1="410" y1="500" x2="410" y2="440" stroke="#c01818" stroke-width="3" /><rect x="402" y="460" width="16" height="30" fill="#c01818" rx="3" /></g>
+                        <g class="candle c12"><line x1="450" y1="480" x2="450" y2="400" stroke="#0a8f3d" stroke-width="3" /><rect x="442" y="425" width="16" height="46" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c13"><line x1="480" y1="460" x2="480" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="472" y="405" width="16" height="48" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c14"><line x1="510" y1="430" x2="510" y2="360" stroke="#0a8f3d" stroke-width="3" /><rect x="502" y="385" width="16" height="40" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c15"><line x1="540" y1="420" x2="540" y2="350" stroke="#c01818" stroke-width="3" /><rect x="532" y="370" width="16" height="42" fill="#c01818" rx="3" /></g>
+                        <g class="candle c16"><line x1="570" y1="410" x2="570" y2="340" stroke="#c01818" stroke-width="3" /><rect x="562" y="360" width="16" height="44" fill="#c01818" rx="3" /></g>
+                        <g class="candle c17"><line x1="610" y1="450" x2="610" y2="380" stroke="#0a8f3d" stroke-width="3" /><rect x="602" y="405" width="16" height="38" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c18"><line x1="640" y1="480" x2="640" y2="410" stroke="#c01818" stroke-width="3" /><rect x="632" y="430" width="16" height="36" fill="#c01818" rx="3" /></g>
+                        <g class="candle c19"><line x1="670" y1="500" x2="670" y2="430" stroke="#0a8f3d" stroke-width="3" /><rect x="662" y="455" width="16" height="38" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c20"><line x1="700" y1="520" x2="700" y2="450" stroke="#c01818" stroke-width="3" /><rect x="692" y="470" width="16" height="36" fill="#c01818" rx="3" /></g>
+                        <g class="candle c21"><line x1="730" y1="540" x2="730" y2="470" stroke="#0a8f3d" stroke-width="3" /><rect x="722" y="490" width="16" height="38" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c22"><line x1="760" y1="560" x2="760" y2="500" stroke="#c01818" stroke-width="3" /><rect x="752" y="520" width="16" height="32" fill="#c01818" rx="3" /></g>
+                        <g class="candle c23"><line x1="800" y1="560" x2="800" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="792" y="525" width="16" height="28" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c24"><line x1="830" y1="570" x2="830" y2="520" stroke="#c01818" stroke-width="3" /><rect x="822" y="535" width="16" height="26" fill="#c01818" rx="3" /></g>
+                        <g class="candle c25"><line x1="860" y1="555" x2="860" y2="510" stroke="#0a8f3d" stroke-width="3" /><rect x="852" y="525" width="16" height="24" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c26"><line x1="890" y1="565" x2="890" y2="520" stroke="#c01818" stroke-width="3" /><rect x="882" y="535" width="16" height="24" fill="#c01818" rx="3" /></g>
+                        <g class="candle c27"><line x1="920" y1="550" x2="920" y2="505" stroke="#0a8f3d" stroke-width="3" /><rect x="912" y="520" width="16" height="26" fill="#0a8f3d" rx="3" /></g>
+                        <g class="candle c28"><line x1="950" y1="560" x2="950" y2="515" stroke="#c01818" stroke-width="3" /><rect x="942" y="530" width="16" height="24" fill="#c01818" rx="3" /></g>
+                        <!-- Removed last 3 candles (c29,c30,c31) duplicate wrap set -->
+                    </g>
+                    <animateTransform attributeName="transform" type="translate" from="0 0" to="-1040 0" dur="42s" repeatCount="indefinite" />
+                </g>
             </g>
         </svg>
     </div>
@@ -1214,23 +1486,15 @@
     <div class="end-waves"></div>
     <div class="end-top-brighten"></div>
     <div id="end-highscore" class="highscore-top">Highscore: <span id="end-highscore-value">0</span></div>
-    <!-- reuse the same hero-card layout so content sits above the video -->
-    <div class="hero-card game-over-hero" role="region" aria-label="Your Score">
-        <div class="title-stack">
-            <h1 class="title-main">
-                <span class="higher">HIGHER</span>
-                <span class="or"> OR </span>
-                <span class="lower">LOWER</span>
-            </h1>
-            <div class="title-sub">MARKET CAP</div>
-        </div>
-        <div class="display-3" style="font-weight:900; color:#ff6b6b;">YOUR SCORE:</div>
-        <div class="final-score" id="final-score" style="font-size:4.2rem; font-weight:900; color:#fff; letter-spacing:2px;">0</div>
-        <div class="start-controls">
-            <button class="btn btn-share" id="share-score-button" onclick="shareScore()">Share Score</button>
-            <button class="btn-play-again" onclick="startGame(); showScreen('play-screen')">Play Again</button>
-            <button class="btn btn-share back-menu" onclick="showScreen('start-screen')">Back to Menu</button>
-        </div>
+    <!-- Content previously inside hero-card game-over-hero -->
+    <div role="region" aria-label="Your Score" class="end-score-panel" style="position:absolute; top:110px; left:50%; transform:translateX(-50%);">
+        <div class="display-3" style="font-weight:900; color:#ff3b3b; margin-bottom:8px;">YOUR SCORE:</div>
+        <div class="final-score" id="final-score" style="font-size:4.2rem; font-weight:900; color:#fff; letter-spacing:2px; margin-bottom:12px;">0</div>
+        <div id="end-score-message" style="max-width:520px; margin:0 auto 32px; font-size:1.1rem; font-weight:500; color:#ffffff; text-align:center; text-shadow:0 3px 10px rgba(0,0,0,0.7);"></div>
+        <div class="start-controls" style="margin-top:24px; display:flex; flex-direction:column; align-items:center; gap:16px;">
+            <button class="btn-play-again" style="min-width:260px;" onclick="startGame(); showScreen('play-screen')">Play Again</button>
+            <button class="btn btn-share" id="share-score-button" style="min-width:260px;" onclick="shareScore()">Share Score</button>
+            <button class="btn btn-share back-menu" style="min-width:260px;" onclick="showScreen('start-screen')">Back to Menu</button>
         </div>
     </div>
 </div>
@@ -1493,6 +1757,7 @@
 
     // --- DOM Elements (References) ---
     const finalScoreElement = document.getElementById('final-score');
+    const endScoreMessageElement = document.getElementById('end-score-message');
     const scoreElement = document.getElementById('current-score');
     const gameMessageElement = document.getElementById('game-message');
     
@@ -1604,6 +1869,8 @@ function showShareNotification(msg) {
             startVid?.play().catch(()=>{});
             endVid?.pause();
             if (endVid) endVid.currentTime = 0;
+            // restart particles if available
+            if (window.restartStartParticles) window.restartStartParticles();
         } else if (screenId === 'game-over-screen') {
             endVid?.play().catch(()=>{});
             startVid?.pause();
@@ -1751,6 +2018,7 @@ function showShareNotification(msg) {
     // --- Core Game Functions ---
 
     function startGame() {
+        stopStartParticles();
         if (companies.length < 2) {
              gameMessageElement.textContent = "Error: Not enough data loaded to start the game!";
              return;
@@ -1885,6 +2153,42 @@ function showShareNotification(msg) {
                 setTimeout(() => {
                 finalScoreElement.textContent = score;
 
+                // Set dynamic end-screen message based on score
+                if (endScoreMessageElement) {
+                    let msg = '';
+                    if (score <= 4) {
+                        const options = [
+                            'Oof. That score just took a dramatic dip! Maybe stick to the game and not the stock market?',
+                            'Looks like your winning streak just hit a bear market. Time to diversify your guesses!',
+                            "Well, that was a real 'higher or lower' low. Did you forget to check the quarterly report?"
+                        ];
+                        msg = options[Math.floor(Math.random() * options.length)];
+                    } else if (score >= 5 && score <= 9) {
+                        const options = [
+                            "You didn't break the bank, but you certainly earned some respectable dividends! Keep reinvesting your attention.",
+                            "A solid performance! You've achieved stable, moderate growth - the kind your portfolio analyst calls 'boring, but reliable'.",
+                            "You played it safe and stayed out of debt! You've reached the break-even point of greatness."
+                        ];
+                        msg = options[Math.floor(Math.random() * options.length)];
+                    } else if (score >= 10 && score <= 19) {
+                        const options = [
+                            "You've crushed the averages! That score is well above the S&P 500 benchmark.",
+                            "Incredible run! You just earned enough to retire early... to a very small cottage. One more win for the mansion!",
+                            "You've clearly mastered the Art of the Deal! That score is nearly perfect!"
+                        ];
+                        msg = options[Math.floor(Math.random() * options.length)];
+                    } else if (score >= 20) {
+                        const options = [
+                            "Stop playing the game - you need to start teaching it! You've just proven you have investment genius status!",
+                            "You are the market king! That score just earned you more zeros than a small country's debt! Congratulations!",
+                            "Congratulations! You've officially achieved Unicorn Status (a billion-dollar valuation in guessing)!",
+                            "While others fear a market correction, you just caused a market explosion with that score!"
+                        ];
+                        msg = options[Math.floor(Math.random() * options.length)];
+                    }
+                    endScoreMessageElement.textContent = msg;
+                }
+
                 // check and persist highscore
                 const prevHigh = getStoredHighscore();
                 let isNew = false;
@@ -1917,6 +2221,134 @@ function showShareNotification(msg) {
     // --- Final Execution ---
     updateDisplay();
     showScreen('start-screen'); 
+    // ---- Start Screen Particle System ----
+    (function(){
+        const layer = document.getElementById('start-particles');
+        if(!layer) return;
+        let running = true;
+        let particles = [];
+        const maxParticles = 160;
+        let spawnIntervalMs = 260; // base spawn cadence
+        let speedMultiplier = 1; // increases on hover (dynamic per frame)
+        let hovering = false; // track hover state for color & speed
+        const startBtn = document.getElementById('start-button');
+        function targetPos(){
+            if(!startBtn) return {x: window.innerWidth/2, y: window.innerHeight/2};
+            const r = startBtn.getBoundingClientRect();
+            // Converge exactly at button center
+            return {x: r.left + r.width/2, y: r.top + r.height/2};
+        }
+        function spawn(){
+            if(!running) return;
+            if(particles.length > maxParticles) return;
+            const p = document.createElement('div');
+            p.className='start-particle';
+            const tgt = targetPos();
+            const angle = Math.random()*Math.PI*2;
+            const RADIUS = 300; // spawn distance from button center (reduced from 500)
+            let x = tgt.x + Math.cos(angle)*RADIUS;
+            let y = tgt.y + Math.sin(angle)*RADIUS;
+            // clamp to viewport (keep inside a little margin)
+            const margin = 4;
+            if(x < margin) x = margin; if(x > window.innerWidth-margin) x = window.innerWidth-margin;
+            if(y < margin) y = margin; if(y > window.innerHeight-margin) y = window.innerHeight-margin;
+            p.style.transform = `translate(${x}px,${y}px)`;
+            // set color based on current hover state
+            if(hovering){
+                p.style.background = '#fff';
+                p.style.boxShadow = '0 0 14px rgba(255,255,255,0.8)';
+            } else {
+                p.style.background = '#000';
+                p.style.boxShadow = '0 0 10px rgba(0,0,0,0.55)';
+            }
+            layer.appendChild(p);
+            const baseSpeed = (0.12 + Math.random()*0.18); // base speed; multiplier applied each frame
+            const life = 6500 + Math.random()*2500; // slightly longer life for slower travel
+            const startTime = performance.now();
+            particles.push({el:p,x,y,baseSpeed,life,startTime});
+            requestAnimationFrame(()=>{p.style.transition='opacity .9s'; p.style.opacity='1';});
+        }
+        function animate(now){
+            if(!running && particles.length===0) return;
+            const tgt = targetPos();
+            particles = particles.filter(obj => {
+                const dt = now - obj.startTime;
+                if(dt > obj.life){
+                    obj.el.style.opacity='0';
+                    setTimeout(()=>obj.el.remove(),600);
+                    return false;
+                }
+                // move toward target
+                const dx = tgt.x - obj.x;
+                const dy = tgt.y - obj.y;
+                const dist = Math.hypot(dx,dy);
+                // Uniform divisor so hover speed is exactly speedMultiplier times baseline
+                const step = obj.baseSpeed * speedMultiplier * (dt / 26); // hover now 2x when speedMultiplier=2
+                // determine inside button threshold (smaller for concentration)
+                const rect = startBtn ? startBtn.getBoundingClientRect() : {width:120,height:48};
+                const insideThreshold = Math.min(rect.width, rect.height)*0.12; // tight convergence radius
+                if(dist < insideThreshold){
+                    // snap to exact target point for concentrated finish
+                    obj.x = tgt.x;
+                    obj.y = tgt.y;
+                    obj.el.style.transform = `translate(${obj.x}px,${obj.y}px)`;
+                    // brief linger then fade
+                    setTimeout(()=>{ obj.el.style.opacity='0'; setTimeout(()=>obj.el.remove(),500); }, 140);
+                    return false;
+                }
+                const ux = dx / dist;
+                const uy = dy / dist;
+                obj.x += ux * step;
+                obj.y += uy * step;
+                obj.el.style.transform = `translate(${obj.x}px,${obj.y}px)`;
+                return true;
+            });
+            requestAnimationFrame(animate);
+        }
+        let spawnTimer;
+        function resetSpawnTimer(){
+            if(spawnTimer) clearInterval(spawnTimer);
+            spawnTimer = setInterval(spawn, spawnIntervalMs);
+        }
+        resetSpawnTimer();
+        // Accelerate particles on hover
+        if(startBtn){
+            startBtn.addEventListener('mouseenter',()=>{
+                hovering = true;
+                speedMultiplier = 2.0; // 2x baseline movement speed
+                spawnIntervalMs = 40;  // keep rapid spawn (adjust if needed later)
+                // recolor existing particles to white
+                particles.forEach(p=>{p.el.style.background='#fff'; p.el.style.boxShadow='0 0 14px rgba(255,255,255,0.8)';});
+                resetSpawnTimer();
+            });
+            startBtn.addEventListener('mouseleave',()=>{
+                hovering = false;
+                speedMultiplier = 1.0;
+                spawnIntervalMs = 260; // restore base spawn rate
+                // revert existing particles to black
+                particles.forEach(p=>{p.el.style.background='#000'; p.el.style.boxShadow='0 0 10px rgba(0,0,0,0.55)';});
+                resetSpawnTimer();
+            });
+        }
+        requestAnimationFrame(animate);
+        window.stopStartParticles = function(){
+            running = false;
+            clearInterval(spawnTimer);
+            // fade all remaining
+            particles.forEach(p=>{p.el.style.opacity='0'; setTimeout(()=>p.el.remove(),700);});
+            particles = [];
+        };
+        window.restartStartParticles = function(){
+            if(running) return; // already running
+            running = true;
+            hovering = false;
+            speedMultiplier = 1.0;
+            spawnIntervalMs = 260;
+            resetSpawnTimer();
+            // re-start animation loop so particles move toward target again
+            requestAnimationFrame(animate);
+        };
+    })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
